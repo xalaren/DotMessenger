@@ -14,7 +14,7 @@ namespace DotMessenger.Core.Model.Entities
         private string email = string.Empty;
         private DateTimeOffset birthDate;
         private int age;
-        private List<Chat> chatList = new List<Chat>();
+        private List<ChatList> chats = new List<ChatList>();
 
         public int Id
         {
@@ -122,13 +122,13 @@ namespace DotMessenger.Core.Model.Entities
             }
         }
 
-        public List<Chat> ChatList
+        public List<ChatList> Chats
         {
-            get => chatList;
+            get => chats;
             set
             {
                 if(value == null) return;
-                chatList = value;
+                chats = value;
             }
         }
     }
