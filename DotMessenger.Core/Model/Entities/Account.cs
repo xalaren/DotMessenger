@@ -5,6 +5,7 @@ namespace DotMessenger.Core.Model.Entities
     public class Account : IUser, IPerson
     {
         private int id;
+        private int appRoleId;
         private string name = string.Empty;
         private string lastname = string.Empty;
         private string phoneNumber = string.Empty;
@@ -24,6 +25,17 @@ namespace DotMessenger.Core.Model.Entities
                 id = value;
             }
         }
+
+        public int AppRoleId
+        {
+            get => appRoleId;
+            set
+            {
+                if (value < 0) return;
+                appRoleId = value;
+            }
+        }
+
 
         public string Name
         {
