@@ -4,7 +4,7 @@
     {
         string Name { get; set; }
         string Lastname { get; set; }
-        DateTimeOffset BirthDate { get; set; }
+        DateTime BirthDate { get; set; }
         string PhoneNumber { get; set; }
     }
 }

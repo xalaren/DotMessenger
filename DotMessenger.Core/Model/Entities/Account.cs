@@ -12,7 +12,7 @@ namespace DotMessenger.Core.Model.Entities
         private string nickname = string.Empty;
         private string password = string.Empty;
         private string email = string.Empty;
-        private DateTimeOffset birthDate;
+        private DateTime birthDate;
         private int age;
         private List<ChatList> chats = new List<ChatList>();
 
@@ -113,7 +113,7 @@ namespace DotMessenger.Core.Model.Entities
             }
         }
 
-        public DateTimeOffset BirthDate
+        public DateTime BirthDate
         {
             get => birthDate;
             set
