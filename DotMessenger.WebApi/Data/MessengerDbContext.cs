@@ -1,4 +1,5 @@
 ﻿using DotMessenger.Core.Model.Entities;
+using DotMessenger.WebApi.Data.MessengerDbEntityConfigrations;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotMessenger.WebApi.Data
@@ -14,5 +15,15 @@ namespace DotMessenger.WebApi.Data
         public DbSet<UserList> UserLists { get; set; }
 
         public MessengerDbContext(DbContextOptions options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new AccountEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ChatEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new MessageEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ChatRoleEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new AppRoleEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new UserListEntityTypeConfiguration());
+        }
     }
 }
