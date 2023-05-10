@@ -17,4 +17,8 @@
     <ProjectReference Include="..\DotMessenger.Core\DotMessenger.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
