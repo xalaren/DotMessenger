@@ -21,5 +21,7 @@ namespace DotMessenger.Core.Model.Entities
         public ICollection<ChatUser> ChatUsers { get; set; } = new List<ChatUser>();
         public AppRole AppRole { get; set; } = null!;
         public UserList UserList { get; set; } = null!;
+
+
     }
 }

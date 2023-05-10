@@ -34,11 +34,11 @@ namespace DotMessenger.Core.Repositories
         {
             if (entity == null) throw new ArgumentNullException("Unable to update to empty chat", nameof(entity));
 
-            var foundAccount = FindById(entity.Id);
+            var foundChat = FindById(entity.Id);
 
-            if (foundAccount == null) return;
+            if (foundChat == null) return;
 
-            foundAccount = entity;
+            foundChat = entity;
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<sim-project version="13.85" multi-file="no" uid="simp1aa3e8dbc70b45979b470cab731b9732">
+<sim-project version="13.80" multi-file="no" uid="simp1aa3e8dbc70b45979b470cab731b9732">
   <meta>
     <name>DotMessenger</name>
-    <authors>Валерий Иманов</authors>
+    <authors> </authors>
     <description />
   </meta>
   <counters models="1">
@@ -10,6 +10,14 @@
       <counter>
         <item-type type-id="erd-entity" type="Entity" />
         <value>12</value>
+      </counter>
+      <counter>
+        <item-type type-id="actor" type="Actor" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="use-case" type="Use Case" />
+        <value>5</value>
       </counter>
     </entity-names>
     <entity-ids>
@@ -21,11 +29,43 @@
         <item-type type-id="erd-relationship" type="Relationship" />
         <value>10</value>
       </counter>
+      <counter>
+        <item-type type-id="group" type="Group" />
+        <value>154</value>
+      </counter>
+      <counter>
+        <item-type type-id="actor" type="Actor" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="use-case" type="Use Case" />
+        <value>6</value>
+      </counter>
+      <counter>
+        <item-type type-id="relationship" type="Association" />
+        <value>11</value>
+      </counter>
+      <counter>
+        <item-type type-id="property" type="Property" />
+        <value>9</value>
+      </counter>
+      <counter>
+        <item-type type-id="extend" type="Entend" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="include" type="Include" />
+        <value>2</value>
+      </counter>
     </entity-ids>
     <diagrams>
       <counter>
         <type>SoftwareIdeasModeler.Core.Diagrams.Other.EntityRelationshipDiagram</type>
         <value>1</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlUseCaseDiagram</type>
+        <value>2</value>
       </counter>
     </diagrams>
     <fields>
@@ -72,6 +112,16 @@
       <person id="">
         <first-name>Валерий</first-name>
         <last-name>Иманов</last-name>
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+        <working-schedule uid="ws-464c7cf424dc490b85478a21aa45b9ac" hours="8" monday="8" tuesday="8" wednesday="8" thursday="8" friday="8" saturday="0" sunday="0" />
+      </person>
+      <person id="">
+        <first-name />
+        <last-name />
         <role />
         <e-mail />
         <phone-number />
@@ -1826,7 +1876,16 @@
       </style-definition>
     </style>
   </style-set>
-  <items />
+  <items>
+    <item id="404a268f12a84ea1892ae8c3d099233e" cid="PROP001" type="property" owner="bf40f1c66c76446d9d70ea66e8651c18" creator="" creation-date="05/10/2023 10:04:42" visibility="private" />
+    <item id="75c7099a4ac74e1a845bfa78f22fc857" cid="PROP004" type="property" owner="245c08aec9274f82a8a54e2da4597717" creator="" creation-date="05/10/2023 10:04:49" visibility="private" />
+    <item id="ee99476570734656848b292df07677b0" cid="PROP006" type="property" owner="39d9854d5cee4faeb71e5d7aedc6b842" creator="" creation-date="05/10/2023 10:04:53" visibility="private" />
+    <item id="c344e421bf904b4aa8965592f631ffa3" cid="PROP008" type="property" owner="c20418472bb14a74b369733f259e2ad2" creator="" creation-date="05/10/2023 10:21:23" visibility="private" />
+    <item id="1ebe12a28bab4ff092d81c3e39cb7455" cid="PROP005" type="property" owner="39d9854d5cee4faeb71e5d7aedc6b842" creator="" creation-date="05/10/2023 10:04:53" visibility="private" />
+    <item id="21cf5991cff147b4a0594ec7bb41dcce" cid="PROP002" type="property" owner="bf40f1c66c76446d9d70ea66e8651c18" creator="" creation-date="05/10/2023 10:04:42" visibility="private" />
+    <item id="75bb9741df7b4ae0af80018af226cd25" cid="PROP007" type="property" owner="c20418472bb14a74b369733f259e2ad2" creator="" creation-date="05/10/2023 10:21:23" visibility="private" />
+    <item id="f09b36e44a9b44118948d36ec051304f" cid="PROP003" type="property" owner="245c08aec9274f82a8a54e2da4597717" creator="" creation-date="05/10/2023 10:04:49" visibility="private" />
+  </items>
   <models>
     <model id="p2ec8de29f25a4a06890c17037e7d0fbe_216171687" name="Model1" namespace="" order-index="1">
       <meta>
@@ -1841,7 +1900,7 @@
       </meta>
       <abstract-items />
       <sub-models />
-      <diagram type="entity-relationship" id="peebc5a2d732f499eab74b4dd583c6d6a_417669002" name="EntityRelationshipDiagram1" order-index="1" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-207,-208" zoom="0.8">
+      <diagram type="entity-relationship" id="peebc5a2d732f499eab74b4dd583c6d6a_417669002" name="EntityRelationshipDiagram1" order-index="1" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-427,-70" zoom="0.8">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -1858,14 +1917,6 @@
           <version />
         </meta>
         <abstract-items>
-          <item id="f8dcdb4ada4b454a86776e124acfcb5d" cid="ENT011" type="erd-entity" name="AppRole" creator="" creation-date="05/08/2023 08:34:36">
-            <entity description="" />
-            <attributes>
-              <attribute uid="a356d6211a7df433ebfcb1b00c42dc313504" cid="EA038" name="Id" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="true" nullable="false" description="" default-value="" default-value-name="" auto-increment="true" creation-date="05/08/2023 08:34:42" />
-              <attribute uid="add4145f3b00d486ea4ee33f3fb1d0a90893" cid="EA039" name="Name" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 08:35:04" />
-            </attributes>
-            <indexes />
-          </item>
           <item id="93406dfa5baf4636a995c55881a8b892" cid="REL005" type="erd-relationship" creator="" creation-date="05/08/2023 08:33:04" from="863410c13fd94e73b637eb739774b94a" to="59a4dcc3326142e6b649cbd7a1adb0c8">
             <erd-relation type="Identifying" multiplicity-from="1" multiplicity-to="1">
               <attribute-pairs>
@@ -1873,28 +1924,21 @@
               </attribute-pairs>
             </erd-relation>
           </item>
-          <item id="937cf5dfdd5a4ccf80e26fb7a1195dd7" cid="REL006" type="erd-relationship" creator="" creation-date="05/08/2023 08:43:57" from="01acd7dd482a4389a568d6e2212b66db" to="823f485e86794ab2a82e9d19e43b9bf8">
-            <erd-relation type="Identifying" multiplicity-from="1" multiplicity-to="0..*">
-              <attribute-pairs>
-                <attribute-pair from-attribute="a71d30fc93d1a43e18cd1f012e6c2fc6892" to-attribute="a4e5aec5989f24e0884098d65f1421c9f459" />
-              </attribute-pairs>
-            </erd-relation>
+          <item id="823f485e86794ab2a82e9d19e43b9bf8" cid="ENT012" type="erd-entity" name="UserList" creator="" creation-date="05/08/2023 08:36:02">
+            <entity description="" />
+            <attributes>
+              <attribute uid="adbdc97b5f242458caf99df49a62be257676" cid="EA046" name="CreatorId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="true" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/08/2023 08:38:57" />
+              <attribute uid="a4e5aec5989f24e0884098d65f1421c9f459" cid="EA045" name="AccountId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="true" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/08/2023 08:37:13" />
+              <attribute uid="a0fdb5efcf808429196eb30979865d89d197" cid="EA044" name="ListName" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/08/2023 08:36:54" />
+            </attributes>
+            <indexes />
           </item>
           <item id="863410c13fd94e73b637eb739774b94a" cid="ENT010" type="erd-entity" name="ChatUser" creator="" creation-date="05/08/2023 08:14:29">
             <entity description="" />
             <attributes>
-              <attribute uid="aec27d472d65c4fbfa6fae3ed88507529503" cid="EA035" name="ChatId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="true" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 08:14:41" />
-              <attribute uid="aab8c76baee7743709906683ff11ed6eb599" cid="EA036" name="AccountId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="true" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 08:14:46" />
-              <attribute uid="ad064ca12c7084bc78d48ef8431b5c45e76" cid="EA037" name="RoleId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 08:14:50" />
-            </attributes>
-            <indexes />
-          </item>
-          <item id="823f485e86794ab2a82e9d19e43b9bf8" cid="ENT012" type="erd-entity" name="UserList" creator="" creation-date="05/08/2023 08:36:02">
-            <entity description="" />
-            <attributes>
-              <attribute uid="adbdc97b5f242458caf99df49a62be257676" cid="EA046" name="CreatorId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="true" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 08:38:57" />
-              <attribute uid="a4e5aec5989f24e0884098d65f1421c9f459" cid="EA045" name="AccountId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="true" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 08:37:13" />
-              <attribute uid="a0fdb5efcf808429196eb30979865d89d197" cid="EA044" name="ListName" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 08:36:54" />
+              <attribute uid="aec27d472d65c4fbfa6fae3ed88507529503" cid="EA035" name="ChatId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="true" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/08/2023 08:14:41" />
+              <attribute uid="aab8c76baee7743709906683ff11ed6eb599" cid="EA036" name="AccountId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="true" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/08/2023 08:14:46" />
+              <attribute uid="ad064ca12c7084bc78d48ef8431b5c45e76" cid="EA037" name="RoleId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/08/2023 08:14:50" />
             </attributes>
             <indexes />
           </item>
@@ -1902,40 +1946,32 @@
             <style class="ERD" />
             <entity description="" />
             <attributes>
-              <attribute uid="ad63e682d33e34eebb93df45efb58feee940" cid="EA013" name="MessageId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="true" nullable="false" description="" default-value="" default-value-name="" auto-increment="true" creation-date="05/07/2023 15:25:35" />
-              <attribute uid="aa39c5f74c18142c9b0f70d6d8f774a1c7" cid="EA014" name="AccountId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/07/2023 15:25:42" />
-              <attribute uid="afa893723d29743b4bca6069ebfd2c0e4596" cid="EA015" name="ChatId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/07/2023 15:30:02" />
-              <attribute uid="a03b49612398841219a5b2a5aaff4e679347" cid="EA016" name="Text" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/07/2023 15:30:08" />
-              <attribute uid="aa1ffca697c314241acf52e9108e1321d598" cid="EA017" name="CreatedAt" type="DateTime" type-id="Uml.DateTime" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/07/2023 15:30:28" />
+              <attribute uid="ad63e682d33e34eebb93df45efb58feee940" cid="EA013" name="MessageId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="true" nullable="false" description="" default-value="" auto-increment="true" creation-date="05/07/2023 15:25:35" />
+              <attribute uid="aa39c5f74c18142c9b0f70d6d8f774a1c7" cid="EA014" name="AccountId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/07/2023 15:25:42" />
+              <attribute uid="afa893723d29743b4bca6069ebfd2c0e4596" cid="EA015" name="ChatId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="true" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/07/2023 15:30:02" />
+              <attribute uid="a03b49612398841219a5b2a5aaff4e679347" cid="EA016" name="Text" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/07/2023 15:30:08" />
+              <attribute uid="aa1ffca697c314241acf52e9108e1321d598" cid="EA017" name="CreatedAt" type="DateTime" type-id="Uml.DateTime" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/07/2023 15:30:28" />
             </attributes>
             <indexes />
           </item>
-          <item id="ad6bc03a018e41cea00bcdb6be0da21d" cid="REL003" type="erd-relationship" creator="" creation-date="05/08/2023 08:27:07" from="863410c13fd94e73b637eb739774b94a" to="f35252571b804bc9a74bcc8274ed39bc">
-            <erd-relation type="Identifying" multiplicity-from="1" multiplicity-to="1..*">
+          <item id="dd5803c588a54ff9bab6287d0bca4274" cid="REL007" type="erd-relationship" creator="" creation-date="05/08/2023 08:44:25" from="01acd7dd482a4389a568d6e2212b66db" to="f8dcdb4ada4b454a86776e124acfcb5d">
+            <erd-relation type="Identifying" multiplicity-from="1" multiplicity-to="1">
               <attribute-pairs>
-                <attribute-pair from-attribute="aec27d472d65c4fbfa6fae3ed88507529503" to-attribute="a970b5d2917c5495ea35265cdb67f8edb173" />
+                <attribute-pair from-attribute="a95bd711400f04fd883e24ef5330b4858133" to-attribute="a356d6211a7df433ebfcb1b00c42dc313504" />
               </attribute-pairs>
             </erd-relation>
           </item>
-          <item id="01acd7dd482a4389a568d6e2212b66db" cid="ENT001" type="erd-entity" name="Account" style-class="ERD" creator="" creation-date="05/07/2023 14:59:10">
-            <style class="ERD" />
+          <item id="f35252571b804bc9a74bcc8274ed39bc" cid="ENT004" type="erd-entity" name="Chat" creator="" creation-date="05/07/2023 15:25:07">
             <entity description="" />
             <attributes>
-              <attribute uid="a71d30fc93d1a43e18cd1f012e6c2fc6892" cid="EA001" name="Id" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="true" nullable="false" description="" default-value="" default-value-name="" auto-increment="true" creation-date="05/07/2023 14:59:23" />
-              <attribute uid="a37b0ae7069ef483cab65f8c83a498370365" cid="EA002" name="Name" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/07/2023 14:59:29" />
-              <attribute uid="aee0e79779b7f4128950bf7a503599aae475" cid="EA003" name="Lastname" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/07/2023 14:59:37" />
-              <attribute uid="ac3aaa61f41cd4284b605c206e05871c4581" cid="EA004" name="Nickname" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/07/2023 15:09:07" />
-              <attribute uid="a181317ba156b453b8598e7f54b1f45a1967" cid="EA005" name="Password" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/07/2023 15:09:26" />
-              <attribute uid="a56bd1fd0e1c5460bb3b6271fe9512ed739" cid="EA006" name="Email" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/07/2023 15:09:32" />
-              <attribute uid="ad8907c89561c4a96b29ed7daec62ac4e40" cid="EA007" name="Phone" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="true" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/07/2023 15:09:36" />
-              <attribute uid="a06b459d6e1464da48e734e9c163fcc7b522" cid="EA008" name="BirthDate" type="DateTime" type-id="Uml.DateTime" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/07/2023 15:09:42" />
-              <attribute uid="aa5858113156f47149f25efe13182235a318" cid="EA047" name="Age" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="false" nullable="true" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 09:39:30" />
-              <attribute uid="a95bd711400f04fd883e24ef5330b4858133" cid="EA042" name="AppRoleId" type="" type-id="" type-size="" foreign-key="true" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 08:35:47" />
+              <attribute uid="a970b5d2917c5495ea35265cdb67f8edb173" cid="EA011" name="ChatId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="true" nullable="false" description="" default-value="" auto-increment="true" creation-date="05/07/2023 15:25:12" />
+              <attribute uid="acb9f7759e80a4429a3edd3634590ee4c773" cid="EA027" name="CreatedAt" type="DateTime" type-id="Uml.DateTime" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/08/2023 08:02:08" />
+              <attribute uid="a642b6d82acd8460b85399b0db467ae55899" cid="EA048" name="Title" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/08/2023 09:45:28" />
             </attributes>
             <indexes />
           </item>
           <item id="59a4dcc3326142e6b649cbd7a1adb0c8" cid="ENT008" type="erd-entity" name="ChatRole" creator="" creation-date="05/08/2023 08:03:06">
-            <style style-name="Default" shadow-type="smooth" shadow-offset="2,2" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="3" margin="1" glow-color="#FFFFFF" rounding="-10" accuracy="0.9">
+            <style style-name="Custom Style" shadow-type="smooth" shadow-offset="2,2" shadow-color="#3A555555" shadow-radius="8" wrap-name-text="true" wrap-other-text="true" padding="3" margin="1" glow-color="#FFFFFF" rounding="-10" accuracy="0.9">
               <text-style type="name" color="#2A2A2A" font="Open Sans;15.75;B" />
               <text-style type="part-header" color="#1E1E1E" font="Verdana;9;I" />
               <text-style type="text" color="#2A2A2A" font="Open Sans;12;" horizontal-alignment="left" />
@@ -1959,9 +1995,9 @@
             </style>
             <entity description="" />
             <attributes>
-              <attribute uid="a3cfe6b02aa714e95a5ab429f4951efe7866" cid="EA029" name="Id" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="true" nullable="false" description="" default-value="" default-value-name="" auto-increment="true" creation-date="05/08/2023 08:05:07" />
-              <attribute uid="a2f51e978e83547beb5139fbe521d852f423" cid="EA049" name="ChatId" type="" type-id="" type-size="" foreign-key="true" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 09:54:51">
-                <style style-name="" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFF" accuracy="0.9">
+              <attribute uid="a3cfe6b02aa714e95a5ab429f4951efe7866" cid="EA029" name="Id" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="true" nullable="false" description="" default-value="" auto-increment="true" creation-date="05/08/2023 08:05:07" />
+              <attribute uid="a2f51e978e83547beb5139fbe521d852f423" cid="EA049" name="ChatId" type="" type-id="" type-size="" foreign-key="true" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/08/2023 09:54:51">
+                <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFF" accuracy="0.9">
                   <text-style type="name" color="#2A2A2A" font="Open Sans;12;I" horizontal-alignment="left" />
                   <text-style type="part-header" color="#1E1E1E" font="Microsoft Sans Serif;9;I" />
                   <text-style type="text" use-defaults="true" color="#2A2A2A" font="Open Sans;12;" horizontal-alignment="left" />
@@ -1969,16 +2005,46 @@
                   <text-style type="stereotype" use-defaults="true" color="#1E1E1E" font="Microsoft Sans Serif;9;I" />
                 </style>
               </attribute>
-              <attribute uid="a5590e834495e43a8b86701f8fd9e775d170" cid="EA030" name="Name" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 08:05:14" />
+              <attribute uid="a5590e834495e43a8b86701f8fd9e775d170" cid="EA030" name="Name" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/08/2023 08:05:14" />
             </attributes>
             <indexes />
           </item>
-          <item id="f35252571b804bc9a74bcc8274ed39bc" cid="ENT004" type="erd-entity" name="Chat" creator="" creation-date="05/07/2023 15:25:07">
+          <item id="937cf5dfdd5a4ccf80e26fb7a1195dd7" cid="REL006" type="erd-relationship" creator="" creation-date="05/08/2023 08:43:57" from="01acd7dd482a4389a568d6e2212b66db" to="823f485e86794ab2a82e9d19e43b9bf8">
+            <erd-relation type="Identifying" multiplicity-from="1" multiplicity-to="0..*">
+              <attribute-pairs>
+                <attribute-pair from-attribute="a71d30fc93d1a43e18cd1f012e6c2fc6892" to-attribute="a4e5aec5989f24e0884098d65f1421c9f459" />
+              </attribute-pairs>
+            </erd-relation>
+          </item>
+          <item id="01acd7dd482a4389a568d6e2212b66db" cid="ENT001" type="erd-entity" name="Account" style-class="ERD" creator="" creation-date="05/07/2023 14:59:10">
+            <style class="ERD" />
             <entity description="" />
             <attributes>
-              <attribute uid="a970b5d2917c5495ea35265cdb67f8edb173" cid="EA011" name="ChatId" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="true" nullable="false" description="" default-value="" default-value-name="" auto-increment="true" creation-date="05/07/2023 15:25:12" />
-              <attribute uid="acb9f7759e80a4429a3edd3634590ee4c773" cid="EA027" name="CreatedAt" type="DateTime" type-id="Uml.DateTime" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 08:02:08" />
-              <attribute uid="a642b6d82acd8460b85399b0db467ae55899" cid="EA048" name="Title" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" default-value-name="" auto-increment="false" creation-date="05/08/2023 09:45:28" />
+              <attribute uid="a71d30fc93d1a43e18cd1f012e6c2fc6892" cid="EA001" name="Id" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="true" nullable="false" description="" default-value="" auto-increment="true" creation-date="05/07/2023 14:59:23" />
+              <attribute uid="a37b0ae7069ef483cab65f8c83a498370365" cid="EA002" name="Name" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/07/2023 14:59:29" />
+              <attribute uid="aee0e79779b7f4128950bf7a503599aae475" cid="EA003" name="Lastname" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/07/2023 14:59:37" />
+              <attribute uid="ac3aaa61f41cd4284b605c206e05871c4581" cid="EA004" name="Nickname" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/07/2023 15:09:07" />
+              <attribute uid="a181317ba156b453b8598e7f54b1f45a1967" cid="EA005" name="Password" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/07/2023 15:09:26" />
+              <attribute uid="a56bd1fd0e1c5460bb3b6271fe9512ed739" cid="EA006" name="Email" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/07/2023 15:09:32" />
+              <attribute uid="ad8907c89561c4a96b29ed7daec62ac4e40" cid="EA007" name="Phone" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="true" description="" default-value="" auto-increment="false" creation-date="05/07/2023 15:09:36" />
+              <attribute uid="a06b459d6e1464da48e734e9c163fcc7b522" cid="EA008" name="BirthDate" type="DateTime" type-id="Uml.DateTime" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/07/2023 15:09:42" />
+              <attribute uid="aa5858113156f47149f25efe13182235a318" cid="EA047" name="Age" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="false" nullable="true" description="" default-value="" auto-increment="false" creation-date="05/08/2023 09:39:30" />
+              <attribute uid="a95bd711400f04fd883e24ef5330b4858133" cid="EA042" name="AppRoleId" type="" type-id="" type-size="" foreign-key="true" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/08/2023 08:35:47" />
+            </attributes>
+            <indexes />
+          </item>
+          <item id="ad6bc03a018e41cea00bcdb6be0da21d" cid="REL003" type="erd-relationship" creator="" creation-date="05/08/2023 08:27:07" from="863410c13fd94e73b637eb739774b94a" to="f35252571b804bc9a74bcc8274ed39bc">
+            <erd-relation type="Identifying" multiplicity-from="1" multiplicity-to="1..*">
+              <attribute-pairs>
+                <attribute-pair from-attribute="aec27d472d65c4fbfa6fae3ed88507529503" to-attribute="a970b5d2917c5495ea35265cdb67f8edb173" />
+              </attribute-pairs>
+            </erd-relation>
+          </item>
+          <item id="f8dcdb4ada4b454a86776e124acfcb5d" cid="ENT011" type="erd-entity" name="AppRole" creator="" creation-date="05/08/2023 08:34:36">
+            <entity description="" />
+            <attributes>
+              <attribute uid="a356d6211a7df433ebfcb1b00c42dc313504" cid="EA038" name="Id" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="true" nullable="false" description="" default-value="" auto-increment="true" creation-date="05/08/2023 08:34:42" />
+              <attribute uid="add4145f3b00d486ea4ee33f3fb1d0a90893" cid="EA039" name="Name" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" creation-date="05/08/2023 08:35:04" />
             </attributes>
             <indexes />
           </item>
@@ -1986,13 +2052,6 @@
             <erd-relation type="Identifying" multiplicity-from="1" multiplicity-to="0..*">
               <attribute-pairs>
                 <attribute-pair from-attribute="a970b5d2917c5495ea35265cdb67f8edb173" to-attribute="afa893723d29743b4bca6069ebfd2c0e4596" />
-              </attribute-pairs>
-            </erd-relation>
-          </item>
-          <item id="dd5803c588a54ff9bab6287d0bca4274" cid="REL007" type="erd-relationship" creator="" creation-date="05/08/2023 08:44:25" from="01acd7dd482a4389a568d6e2212b66db" to="f8dcdb4ada4b454a86776e124acfcb5d">
-            <erd-relation type="Identifying" multiplicity-from="1" multiplicity-to="1">
-              <attribute-pairs>
-                <attribute-pair from-attribute="a95bd711400f04fd883e24ef5330b4858133" to-attribute="a356d6211a7df433ebfcb1b00c42dc313504" />
               </attribute-pairs>
             </erd-relation>
           </item>
@@ -2096,6 +2155,158 @@
               </points>
             </layout>
             <relation from="01acd7dd482a4389a568d6e2212b66db" from-iid="501c70738b484512be393980e687ad0c" from-field="a95bd711400f04fd883e24ef5330b4858133" to="f8dcdb4ada4b454a86776e124acfcb5d" to-iid="d24bb9e91f85435da359a6e07150549d" to-field="a356d6211a7df433ebfcb1b00c42dc313504" />
+          </item>
+        </layer>
+      </diagram>
+      <diagram type="uml-usecase" id="p2ee8d059a5b844ebbb4363ded151ebd6_602718498" name="UseCase" order-index="2" overview-order-index="0" uid="" auto-routed-paths="false" default-line-style="default" view-location="-701,-116" zoom="0.7">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="vertical-linear" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>05/10/2023 10:02:38</creation-date>
+          <change-date>05/10/2023 10:21:23</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="93e8dc60cc2f46839541244fd9caef36" cid="UC001" type="use-case" name="Register Account" creator="" creation-date="05/10/2023 10:03:37">
+            <use-case>
+              <stakeholders />
+            </use-case>
+          </item>
+          <item id="b39bb46f346c4adbb418a7dbd54db001" cid="UC005" type="use-case" name="Login to account" creator="" creation-date="05/10/2023 10:20:45">
+            <use-case>
+              <stakeholders />
+            </use-case>
+          </item>
+          <item id="ab148ba503c744a8817b4d3d4a92ef39" cid="INC001" type="include" creator="" creation-date="05/10/2023 10:05:25" from="b2c5e4b0b3f44fdfa3391295b8461477" to="94de19e461074c09ac21b74bac59226d" visibility="package">
+            <stereotypes>
+              <stereotype name="include" />
+            </stereotypes>
+            <stereotype-instances>
+              <stereotype id="ab148ba503c744a8817b4d3d4a92ef39_include_c" type="include" ref="" />
+            </stereotype-instances>
+          </item>
+          <item id="c20418472bb14a74b369733f259e2ad2" cid="REL010" type="relationship" creator="" creation-date="05/10/2023 10:21:23" from="e16d2d22f94a45f9a24f74ddb4cb5da1" to="b39bb46f346c4adbb418a7dbd54db001" visibility="package">
+            <owned-items />
+            <relation from="e16d2d22f94a45f9a24f74ddb4cb5da1" to="b39bb46f346c4adbb418a7dbd54db001" derived="false">
+              <start-role id="umlar-99b5ad34-e3be-4a29-ab96-981186cd81a0" name="" navigability="" association-type="association" visibility="private" property-ref="75bb9741df7b4ae0af80018af226cd25" />
+              <end-role id="umlar-9cce1375-467a-4147-907a-d585afcf17bc" name="" navigability="" association-type="association" visibility="private" property-ref="c344e421bf904b4aa8965592f631ffa3" />
+            </relation>
+          </item>
+          <item id="245c08aec9274f82a8a54e2da4597717" cid="REL008" type="relationship" creator="" creation-date="05/10/2023 10:04:49" from="e16d2d22f94a45f9a24f74ddb4cb5da1" to="b2c5e4b0b3f44fdfa3391295b8461477" visibility="package">
+            <owned-items />
+            <relation from="e16d2d22f94a45f9a24f74ddb4cb5da1" to="b2c5e4b0b3f44fdfa3391295b8461477" derived="false">
+              <start-role id="umlar-cc2b432a-6238-49c8-bcaa-e05001a7e85e" name="" navigability="" association-type="association" visibility="private" property-ref="f09b36e44a9b44118948d36ec051304f" />
+              <end-role id="umlar-0fd08351-d586-467b-9129-3e6f3af57430" name="" navigability="" association-type="association" visibility="private" property-ref="75c7099a4ac74e1a845bfa78f22fc857" />
+            </relation>
+          </item>
+          <item id="39d9854d5cee4faeb71e5d7aedc6b842" cid="REL009" type="relationship" creator="" creation-date="05/10/2023 10:04:53" from="e16d2d22f94a45f9a24f74ddb4cb5da1" to="8577db845de9496d894460f20fc6dbe7" visibility="package">
+            <owned-items />
+            <relation from="e16d2d22f94a45f9a24f74ddb4cb5da1" to="8577db845de9496d894460f20fc6dbe7" derived="false">
+              <start-role id="umlar-54ba3d34-6735-4ec3-a423-937469949c69" name="" navigability="" association-type="association" visibility="private" property-ref="1ebe12a28bab4ff092d81c3e39cb7455" />
+              <end-role id="umlar-9cb879ad-e1a3-45a5-9d5b-70f7fe7400ef" name="" navigability="" association-type="association" visibility="private" property-ref="ee99476570734656848b292df07677b0" />
+            </relation>
+          </item>
+          <item id="e16d2d22f94a45f9a24f74ddb4cb5da1" cid="AC001" type="actor" name="User" creator="" creation-date="05/10/2023 10:02:45" />
+          <item id="94de19e461074c09ac21b74bac59226d" cid="UC004" type="use-case" name="Add members" creator="" creation-date="05/10/2023 10:04:14">
+            <use-case>
+              <stakeholders />
+            </use-case>
+          </item>
+          <item id="bf40f1c66c76446d9d70ea66e8651c18" cid="REL001" type="relationship" creator="" creation-date="05/10/2023 10:04:42" from="e16d2d22f94a45f9a24f74ddb4cb5da1" to="93e8dc60cc2f46839541244fd9caef36" visibility="package">
+            <owned-items />
+            <relation from="e16d2d22f94a45f9a24f74ddb4cb5da1" to="93e8dc60cc2f46839541244fd9caef36" derived="false">
+              <start-role id="umlar-f71c2f55-4fc9-4cd1-aa38-c148ce39dccb" name="" navigability="" association-type="association" visibility="private" property-ref="404a268f12a84ea1892ae8c3d099233e" />
+              <end-role id="umlar-c66f14fe-d757-4c79-94ca-c260aff0af43" name="" navigability="" association-type="association" visibility="private" property-ref="21cf5991cff147b4a0594ec7bb41dcce" />
+            </relation>
+          </item>
+          <item id="8577db845de9496d894460f20fc6dbe7" cid="UC002" type="use-case" name="Send Message" creator="" creation-date="05/10/2023 10:03:47">
+            <use-case>
+              <stakeholders />
+            </use-case>
+          </item>
+          <item id="b2c5e4b0b3f44fdfa3391295b8461477" cid="UC003" type="use-case" name="Create Chat" creator="" creation-date="05/10/2023 10:04:01">
+            <use-case>
+              <stakeholders />
+            </use-case>
+          </item>
+        </abstract-items>
+        <layer id="5fc4d9c4696a4834807d2dfd90952a18" name="Default" visible="true" enabled="true" locked="false">
+          <item id="e16d2d22f94a45f9a24f74ddb4cb5da1" iid="a534df8a1b40400fb390c40c963fa62c" creation-date="05/10/2023 10:02:45" order-index="0" type="entity">
+            <layout name-position="1,9.000002" name-anchor="bottom" auto-anchor="true" label-attached="false" ax="-848" ay="135" awidth="50" aheight="100" x="-848" y="135" width="50" height="120" />
+            <actor />
+          </item>
+          <item id="93e8dc60cc2f46839541244fd9caef36" iid="af76841b09ce4b32bfeeca2bb91aaebc" creation-date="05/10/2023 10:03:37" order-index="1" type="entity">
+            <layout ax="-686" ay="-80" awidth="154" aheight="96" x="-686" y="-80" width="154" height="75" rotation-center="-17,-10.5" />
+            <use-case />
+          </item>
+          <item id="8577db845de9496d894460f20fc6dbe7" iid="96fcde672cab41afab51b7d80e26e17c" creation-date="05/10/2023 10:03:47" order-index="2" type="entity">
+            <layout ax="-686" ay="408.2231" awidth="154" aheight="96" x="-686" y="408.2231" width="154" height="100" rotation-center="-17,-10.5" />
+            <use-case />
+          </item>
+          <item id="b2c5e4b0b3f44fdfa3391295b8461477" iid="313964fb00314babb9cd5ec9f18e836c" creation-date="05/10/2023 10:04:01" order-index="3" type="entity">
+            <layout ax="-660" ay="236" awidth="154" aheight="96" x="-660" y="236" width="154" height="93.11157" rotation-center="-17,-10.5" />
+            <use-case />
+          </item>
+          <item id="94de19e461074c09ac21b74bac59226d" iid="596377d748ba424a9009d09ad3414e14" creation-date="05/10/2023 10:04:14" order-index="4" type="entity">
+            <layout ax="-425" ay="238" awidth="148" aheight="92" x="-425" y="238" width="120" height="75" />
+            <use-case />
+          </item>
+          <item id="bf40f1c66c76446d9d70ea66e8651c18" iid="4d1f6eed7f2c4589b16c453895dd0682" creation-date="05/10/2023 10:04:42" order-index="5" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-end-point="true" lock-to-fields="false" auto-path="" x1="-798" y1="162" x2="-635" y2="13" start-border-pos="0.317819137573242" end-border-pos="0.667207792207792" end-local-pos="93" name-position="0,20">
+              <points>
+                <point x="-798" y="162" />
+                <point x="-635" y="13" />
+              </points>
+            </layout>
+            <relation from="e16d2d22f94a45f9a24f74ddb4cb5da1" from-iid="a534df8a1b40400fb390c40c963fa62c" to="93e8dc60cc2f46839541244fd9caef36" to-iid="af76841b09ce4b32bfeeca2bb91aaebc" />
+          </item>
+          <item id="245c08aec9274f82a8a54e2da4597717" iid="339f5b3eca6948e18d3b5a4663872d61" creation-date="05/10/2023 10:04:49" order-index="6" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="-798" y1="195" x2="-659" y2="286" start-border-pos="0.4" end-border-pos="0.869791666666667" start-local-pos="60" end-local-pos="50" name-position="0,20">
+              <points>
+                <point x="-798" y="195" />
+                <point x="-659" y="286" />
+              </points>
+            </layout>
+            <relation from="e16d2d22f94a45f9a24f74ddb4cb5da1" from-iid="a534df8a1b40400fb390c40c963fa62c" to="b2c5e4b0b3f44fdfa3391295b8461477" to-iid="313964fb00314babb9cd5ec9f18e836c" />
+          </item>
+          <item id="39d9854d5cee4faeb71e5d7aedc6b842" iid="6918858e0130458d921ae35424328ede" creation-date="05/10/2023 10:04:53" order-index="7" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="-814" y1="235" x2="-653" y2="416" start-border-pos="0.58" end-border-pos="0.0535714291036129" start-local-pos="34" end-local-pos="33" name-position="0,20">
+              <points>
+                <point x="-814" y="235" />
+                <point x="-653" y="416" />
+              </points>
+            </layout>
+            <relation from="e16d2d22f94a45f9a24f74ddb4cb5da1" from-iid="a534df8a1b40400fb390c40c963fa62c" to="8577db845de9496d894460f20fc6dbe7" to-iid="96fcde672cab41afab51b7d80e26e17c" />
+          </item>
+          <item id="ab148ba503c744a8817b4d3d4a92ef39" iid="43991bd18ec64a2a8dcbc8c4c8e81d8c" creation-date="05/10/2023 10:05:25" order-index="8" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-to-fields="false" auto-path="" x1="-506" y1="289" x2="-424" y2="286" start-border-pos="0.388020833333333" end-border-pos="0.868513356084409" start-local-pos="53" name-position="0,20">
+              <points>
+                <point x="-506" y="289" />
+                <point x="-424" y="286" />
+              </points>
+            </layout>
+            <relation from="b2c5e4b0b3f44fdfa3391295b8461477" from-iid="313964fb00314babb9cd5ec9f18e836c" to="94de19e461074c09ac21b74bac59226d" to-iid="596377d748ba424a9009d09ad3414e14" />
+          </item>
+          <item id="b39bb46f346c4adbb418a7dbd54db001" iid="a52093be0a934aa8b2581f1480204456" creation-date="05/10/2023 10:20:45" order-index="9" type="entity">
+            <layout ax="-506" ay="75.77686" awidth="154" aheight="96" x="-506" y="75.77686" width="154" height="96" rotation-center="-19,12" />
+            <use-case />
+          </item>
+          <item id="c20418472bb14a74b369733f259e2ad2" iid="57fefcadaf824ec59c13305168fff7f4" creation-date="05/10/2023 10:21:23" order-index="10" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="-798" y1="185" x2="-505" y2="124" start-border-pos="0.375" end-border-pos="0.87441889444987" start-local-pos="50" end-local-pos="48.22314" name-position="0,20">
+              <points>
+                <point x="-798" y="185" />
+                <point x="-505" y="124" />
+              </points>
+            </layout>
+            <relation from="e16d2d22f94a45f9a24f74ddb4cb5da1" from-iid="a534df8a1b40400fb390c40c963fa62c" to="b39bb46f346c4adbb418a7dbd54db001" to-iid="a52093be0a934aa8b2581f1480204456" />
           </item>
         </layer>
       </diagram>
