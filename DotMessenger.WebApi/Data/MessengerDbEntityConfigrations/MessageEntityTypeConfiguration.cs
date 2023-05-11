@@ -8,6 +8,7 @@ namespace DotMessenger.WebApi.Data.MessengerDbEntityConfigrations
     {
         public void Configure(EntityTypeBuilder<Message> builder)
         {
+
             builder
                 .Property(message => message.Text)
                 .IsRequired()

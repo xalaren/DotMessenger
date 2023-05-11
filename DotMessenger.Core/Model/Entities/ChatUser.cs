@@ -6,8 +6,8 @@
         public int AccountId { get; set; }
         public int ChatRoleId { get; set; }
 
+        public ChatRole ChatRole { get; set; } = null!;
         public Chat Chat { get; set; } = null!;
         public Account Account { get; set; } = null!;
-        public ChatRole ChatRole { get; set; } = null!;
     }
 }

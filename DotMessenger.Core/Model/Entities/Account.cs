@@ -15,12 +15,13 @@ namespace DotMessenger.Core.Model.Entities
         public int? Age { get; set; }
         public string? PhoneNumber { get; set; }
 
-        public int AppRoleId { get; set; }
-        public int UserListId { get; set; }
+        //public int AppRoleId { get; set; }
+        //public int UserListId { get; set; }
 
-        public ICollection<ChatUser> ChatUsers { get; set; } = new List<ChatUser>();
-        public AppRole AppRole { get; set; } = null!;
-        public UserList UserList { get; set; } = null!;
+        //public AppRole? AppRole { get; set; }
+        //public UserList? UserList { get; set; }
+        //public List<ChatUser> ChatUsers { get; set; } = new List<ChatUser>();
+
 
 
     }

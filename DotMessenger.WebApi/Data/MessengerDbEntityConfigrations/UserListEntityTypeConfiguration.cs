@@ -12,6 +12,8 @@ namespace DotMessenger.WebApi.Data.MessengerDbEntityConfigrations
                 .Property(userList => userList.ListType)
                 .HasMaxLength(20)
                 .IsRequired();
+
+
         }
     }
 }

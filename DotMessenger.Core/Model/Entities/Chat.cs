@@ -6,7 +6,7 @@
         public string Title { get; set; } = null!;
         public DateTime CreatedAt { get; set; }
 
-        public ICollection<Account> Members { get; set; } = new List<Account>();
+        public ICollection<ChatUser> Members { get; set; } = new List<ChatUser>();
         public ICollection<Message> Messages { get; set; } = new List<Message>(); 
     }
 }

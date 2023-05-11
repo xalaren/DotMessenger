@@ -8,6 +8,6 @@ namespace DotMessenger.Core.Model.Entities
         public int CreatorId { get; set; }
         public string ListType { get; set; } = null!;
 
-        public ICollection<IPerson> People { get; set; } = new List<IPerson>(); 
+        public ICollection<Account> People { get; set; } = new List<Account>(); 
     }
 }

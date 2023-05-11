@@ -5,7 +5,12 @@ namespace DotMessenger.Core.Interactors
 {
     public class AccountInteractor
     {
-        private AccountRepository accountRepository = new AccountRepository();
+        private readonly IAccountRepository accountRepository;
+
+        public AccountInteractor(IAccountRepository accountRepository)
+        {
+            this.accountRepository = accountRepository;
+        }
 
         /// <summary>
         /// Register new account to system and add it to database
@@ -18,27 +23,9 @@ namespace DotMessenger.Core.Interactors
         /// <param name="birthDate"></param>
         /// <param name="phoneNumber"></param>
         /// <exception cref="ArgumentNullException"></exception>
-        public void RegisterNewAccount
-            (string nickname, string password, string email,
-             string name, string lastname, DateTime birthDate, string? phoneNumber = null)
+        public void RegisterNewAccount(Account account)
         {
-            var account = new Account()
-            {
-                Nickname = nickname,
-                Password = password,
-                Email = email,
-                Name = name,
-                Lastname = lastname,
-                BirthDate = birthDate,
-                PhoneNumber = phoneNumber,
-                Age = GetAge(birthDate)
-            };
-
-            if (!CheckForNullStrings(nickname, password, email, name, lastname))
-            {
-                throw new ArgumentNullException("Unable to register account, required fields are null");
-            }
-            
+            account.Age = GetAge(account.BirthDate);
             accountRepository.Add(account);
         }
 
@@ -61,7 +48,7 @@ namespace DotMessenger.Core.Interactors
         /// <returns>True if all strings are not null, false otherwise</returns>
         public bool CheckForNullStrings(params string[] values)
         {
-            foreach(var value in values)
+            foreach (var value in values)
             {
                 if (string.IsNullOrWhiteSpace(value)) return false;
             }
