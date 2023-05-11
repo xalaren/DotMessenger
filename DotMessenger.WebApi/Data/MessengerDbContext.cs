@@ -14,7 +14,10 @@ namespace DotMessenger.WebApi.Data
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<UserList> UserLists { get; set; }
 
-        public MessengerDbContext(DbContextOptions options) : base(options) { }
+        public MessengerDbContext(DbContextOptions options) : base(options) 
+        {
+            Database.EnsureCreated();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
