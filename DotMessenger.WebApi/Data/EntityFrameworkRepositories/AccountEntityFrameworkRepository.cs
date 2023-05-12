@@ -1,6 +1,5 @@
 ﻿using DotMessenger.Core.Model.Entities;
 using DotMessenger.Core.Repositories;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DotMessenger.WebApi.Data.EntityFrameworkRepositories
 {
