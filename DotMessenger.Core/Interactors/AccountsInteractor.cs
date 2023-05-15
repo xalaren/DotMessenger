@@ -11,7 +11,7 @@ namespace DotMessenger.Core.Interactors
         {
             if (repository == null)
             {
-                throw new ArgumentNullException("Repository example was null", nameof(repository));
+                throw new ArgumentNullException("AccountsRepository example was null", nameof(repository));
             }
             
             this.repository = repository;

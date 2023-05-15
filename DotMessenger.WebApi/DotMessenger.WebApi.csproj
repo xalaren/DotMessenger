@@ -26,6 +26,9 @@
 
   <ItemGroup>
     <Folder Include="Controllers" />
+    <Folder Include="Data\EntityFrameworkRepositories" />
+    <Folder Include="Data\EntityTypeConfigurations" />
+    <Folder Include="Data\SQLiteDatabases" />
   </ItemGroup>
 
 </Project>
