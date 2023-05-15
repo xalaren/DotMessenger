@@ -1,3 +1,9 @@
+using DotMessenger.Core.Interactors;
+using DotMessenger.Core.Repositories;
+using DotMessenger.WebApi.Data.EntityFrameworkContexts;
+using DotMessenger.WebApi.Data.EntityFrameworkRepositories;
+using Microsoft.EntityFrameworkCore;
+
 namespace DotMessenger.WebApi
 {
     public class Program
@@ -6,15 +12,14 @@ namespace DotMessenger.WebApi
         {
             var builder = WebApplication.CreateBuilder(args);
             var configuration = builder.Configuration;
-            var connectionMessenger = configuration.GetConnectionString("ConnectionMessenger");
-
-            // builder.Services.AddScoped<AccountInteractor>();
-            // builder.Services.AddScoped<IAccountRepository, AccountEntityFrameworkRepository>();
+            var connectionMessenger = configuration.GetConnectionString("AppConnection");
+            
+            builder.Services.AddScoped<AccountsInteractor>();
+            builder.Services.AddScoped<IAccountsRepository, AccountsRepository>();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            //builder.Services.AddDbContext<MessengerDbContext>(options => options.UseSqlite(connectionMessenger));
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionMessenger));
 
             var app = builder.Build();
 

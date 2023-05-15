@@ -27,6 +27,7 @@ namespace DotMessenger.Core.Interactors
             account.Age = CalculateAge(account.BirthDate);
             
             repository.Create(account);
+            repository.Save();
         }
         
         private bool CheckForNullStrings(params string[] values)

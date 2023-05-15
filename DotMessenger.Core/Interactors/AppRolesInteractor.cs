@@ -22,13 +22,11 @@ namespace DotMessenger.Core.Interactors
         {
             var userRole = new AppRole()
             {
-                Id = 1,
                 Name = "user"
             };
 
             var adminRole = new AppRole()
             {
-                Id = 2,
                 Name = "admin"
             };
 
@@ -41,6 +39,9 @@ namespace DotMessenger.Core.Interactors
             {
                 repository.Add(adminRole);
             }
+            
+            repository.Save();
         }
+        
     }
 }

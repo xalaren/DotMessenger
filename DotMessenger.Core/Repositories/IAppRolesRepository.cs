@@ -8,5 +8,6 @@ namespace DotMessenger.Core.Repositories
         AppRole? FindById(int appRoleId);
         AppRole? FindByName(string name);
         void Remove(int appRoleId);
+        void Save();
     }
 }
