@@ -1,5 +1,6 @@
 using DotMessenger.Core.Interactors;
 using DotMessenger.Core.Model.Entities;
+using DotMessenger.WebApi.Data.EntityFrameworkRepositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotMessenger.WebApi.Controllers

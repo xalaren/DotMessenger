@@ -17,7 +17,6 @@ namespace DotMessenger.WebApi.Data.EntityFrameworkRepositories
         public void Create(Account account)
         {
             context.Accounts.Add(account);
-            context.SaveChanges();
         }
 
         public Account? FindById(int accountId)
@@ -44,6 +43,5 @@ namespace DotMessenger.WebApi.Data.EntityFrameworkRepositories
         {
             context.SaveChanges();
         }
-
     }
 }

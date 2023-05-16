@@ -13,6 +13,6 @@
         public int Age { get; set; }
         
         public int AppRoleId { get; set; }
-        public AppRole GlobalRole { get; set; }
+        public AppRole GlobalRole { get; set; } = null!;
     }
 }

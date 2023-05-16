@@ -33,8 +33,7 @@ namespace DotMessenger.WebApi
             app.UseRouting();
 
             app.UseAuthorization();
-
-
+            
             app.MapControllers();
 
             app.Run();

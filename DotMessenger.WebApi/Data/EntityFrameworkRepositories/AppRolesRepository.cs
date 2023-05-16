@@ -6,7 +6,7 @@ namespace DotMessenger.WebApi.Data.EntityFrameworkRepositories
 {
     public class AppRolesRepository : IAppRolesRepository
     {
-        private AppDbContext context;
+        private readonly AppDbContext context;
 
         public AppRolesRepository(AppDbContext context)
         {
