@@ -13,7 +13,7 @@ namespace DotMessenger.Core.Interactors
             {
                 throw new ArgumentNullException("AccountsRepository example was null", nameof(repository));
             }
-
+            
             this.repository = repository;
         }
 

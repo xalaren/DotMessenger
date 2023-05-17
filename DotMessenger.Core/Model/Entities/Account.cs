@@ -11,8 +11,10 @@
         public string? Phone { get; set; }
         public DateTime BirthDate { get; set; }
         public int Age { get; set; }
-        
+         
         public int AppRoleId { get; set; }
         public AppRole GlobalRole { get; set; } = null!;
+
+        public ICollection<ChatProfile>? ChatProfiles { get; set; }
     }
 }

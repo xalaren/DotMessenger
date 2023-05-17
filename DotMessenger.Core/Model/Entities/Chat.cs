@@ -7,4 +7,5 @@ public class Chat
     public DateTime CreatedAt { get; set; }
     
     public ICollection<Message> Messages { get; set; } = new List<Message>();
+    public ICollection<ChatProfile> ChatProfiles { get; set; } = new List<ChatProfile>();
 }
