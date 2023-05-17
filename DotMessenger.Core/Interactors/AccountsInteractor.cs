@@ -24,7 +24,10 @@ namespace DotMessenger.Core.Interactors
                 throw new ArgumentNullException("Not all required fields were filled");
             }
 
-            account.Age = CalculateAge(account.BirthDate);
+            if (account.BirthDate != null)
+            {
+                account.Age = CalculateAge(account.BirthDate);
+            }
             
             repository.Create(account);
             repository.Save();
@@ -40,11 +43,12 @@ namespace DotMessenger.Core.Interactors
             return true;
         }
 
-        private int CalculateAge(DateTime birthDate)
+        private int CalculateAge(DateTime? birthDate)
         {
+            var notNullBirthDate = birthDate.Value;
             var now = DateTime.Today;
-            return now.Year - birthDate.Year - 1 +
-                   ((now.Month > birthDate.Month || now.Month == birthDate.Month && now.Day >= birthDate.Day) ? 1 : 0);
+            return now.Year - notNullBirthDate.Year - 1 +
+                   ((now.Month > notNullBirthDate.Month || now.Month == notNullBirthDate.Month && now.Day >= notNullBirthDate.Day) ? 1 : 0);
         }
     }
 }
