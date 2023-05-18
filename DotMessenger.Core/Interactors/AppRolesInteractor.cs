@@ -6,15 +6,22 @@ namespace DotMessenger.Core.Interactors
     public class AppRolesInteractor
     {
         private readonly IAppRolesRepository repository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public AppRolesInteractor(IAppRolesRepository repository)
+        public AppRolesInteractor(IAppRolesRepository repository, IUnitOfWork unitOfWork)
         {
             if (repository == null)
             {
                 throw new ArgumentNullException("AppRolesRepository example was null", nameof(repository));
             }
-            
+
+            if(unitOfWork == null)
+            {
+                throw new ArgumentNullException("Unit of work example was null", nameof(unitOfWork));
+            }
+
             this.repository = repository;
+            this.unitOfWork = unitOfWork;
             CreateDefaultRoles();
         }
 
@@ -39,8 +46,8 @@ namespace DotMessenger.Core.Interactors
             {
                 repository.Add(adminRole);
             }
-            
-            repository.Save();
+
+            unitOfWork.Commit();
         }
         
     }

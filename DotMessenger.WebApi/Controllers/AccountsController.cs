@@ -1,6 +1,6 @@
 using DotMessenger.Core.Interactors;
 using DotMessenger.Core.Model.Entities;
-using DotMessenger.WebApi.Data.EntityFrameworkRepositories;
+using DotMessenger.Shared.DataTransferObjects;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotMessenger.WebApi.Controllers
@@ -17,15 +17,22 @@ namespace DotMessenger.WebApi.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult RegisterNewAccount(Account account)
+        public IActionResult RegisterNewAccount(AccountDto accountDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
             
-            accountsInteractor.RegisterNewAccount(account);
+            accountsInteractor.RegisterNewAccount(accountDto);
             return Ok();
+        }
+
+        [HttpGet("get-all")]
+        public IActionResult GetAllAccounts()
+        {
+            var accounts = accountsInteractor.GetAllAccounts();
+            return Ok(accounts);
         }
     }
 }

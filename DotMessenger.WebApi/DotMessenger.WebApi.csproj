@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DotMessenger.Core\DotMessenger.Core.csproj" />
+    <ProjectReference Include="..\DotMessenger.Shared\DotMessenger.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

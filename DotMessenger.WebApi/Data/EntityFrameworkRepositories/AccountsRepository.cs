@@ -26,7 +26,7 @@ namespace DotMessenger.WebApi.Data.EntityFrameworkRepositories
 
         public void Update(Account account)
         {
-            context.Entry(account).State = EntityState.Modified;
+            context.Accounts.Update(account);
         }
 
         public void Remove(int accountId)
@@ -42,6 +42,11 @@ namespace DotMessenger.WebApi.Data.EntityFrameworkRepositories
         public void Save()
         {
             context.SaveChanges();
+        }
+
+        public IEnumerable<Account> GetAllAccounts()
+        {
+            return context.Accounts;
         }
     }
 }

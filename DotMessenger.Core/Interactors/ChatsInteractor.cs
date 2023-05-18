@@ -8,11 +8,13 @@ namespace DotMessenger.Core.Interactors
         private readonly IChatsRepository chatsRepository;
         private readonly IChatProfilesRepository chatProfilesRepository;
         private readonly IAccountsRepository accountsRepository;
+        private readonly IUnitOfWork unitOfWork;
 
         public ChatsInteractor(
             IChatsRepository chatsRepository,
             IChatProfilesRepository chatProfilesRepository,
-            IAccountsRepository accountsRepository)
+            IAccountsRepository accountsRepository,
+            IUnitOfWork unitOfWork)
         {
 
             if (chatsRepository == null || chatProfilesRepository == null || accountsRepository == null)
@@ -20,9 +22,15 @@ namespace DotMessenger.Core.Interactors
                 throw new ArgumentNullException("One of the repositories was null");
             }
 
+            if (unitOfWork == null)
+            {
+                throw new ArgumentNullException("Unit of work example was null", nameof(unitOfWork));
+            }
+
             this.chatsRepository = chatsRepository;
             this.chatProfilesRepository = chatProfilesRepository;
             this.accountsRepository = accountsRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         public void CreateChat(int accountId, string title)
@@ -53,9 +61,7 @@ namespace DotMessenger.Core.Interactors
 
             chatProfilesRepository.Create(chatProfile);
 
-            chatsRepository.Save();
-            chatProfilesRepository.Save();
-
+            unitOfWork.Commit();
         }
     }
 }

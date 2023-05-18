@@ -21,6 +21,8 @@ namespace DotMessenger.WebApi
             builder.Services.AddScoped<IChatsRepository, ChatsRepository>();
             builder.Services.AddScoped<IChatProfilesRepository, ChatProfilesRepository>();
 
+            builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

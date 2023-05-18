@@ -10,7 +10,5 @@ namespace DotMessenger.Core.Repositories
         Chat? FindById(int chatId);
         Chat? FindByTitle(string title);
         IEnumerable<Chat> GetAllUserChats(int userId);
-
-        void Save();
     }
 }

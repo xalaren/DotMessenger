@@ -7,5 +7,5 @@ public class Message
     public DateTime SendDate { get; set; }
     
     public int SenderId { get; set; }
-    public Account Sender { get; set; } = null!;
+    public Account? Sender { get; set; }
 }
