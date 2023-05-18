@@ -15,11 +15,21 @@ namespace DotMessenger.WebApi.Controllers
         }
 
         [HttpPost("create")]
-        public IActionResult CreateChat(int accountId, string title)
+        public Response CreateChat(int accountId, string title)
         {
-            chatsInteractor.CreateChat(accountId, title);
+            return chatsInteractor.CreateChat(accountId, title);
+        }
 
-            return Ok();
+        [HttpGet("get-all")]
+        public Response GetAllChats()
+        {
+            return chatsInteractor.GetChats();
+        }
+
+        [HttpGet("get-all-user")]
+        public Response GetAllUserChats(int userId)
+        {
+            return chatsInteractor.GetAllUserChats(userId);
         }
     }
 }

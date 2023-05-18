@@ -1,5 +1,6 @@
 ﻿using DotMessenger.Core.Model.Entities;
 using DotMessenger.Core.Repositories;
+using DotMessenger.Shared.DataTransferObjects;
 
 namespace DotMessenger.Core.Interactors
 {
@@ -33,35 +34,95 @@ namespace DotMessenger.Core.Interactors
             this.unitOfWork = unitOfWork;
         }
 
-        public void CreateChat(int accountId, string title)
+        public Response CreateChat(int accountId, string title)
         {
-            if(string.IsNullOrWhiteSpace(title))
+            try
             {
-                throw new ArgumentNullException("Title was null", nameof(title));
+                if (string.IsNullOrWhiteSpace(title))
+                {
+                    throw new ArgumentNullException("Title was null", nameof(title));
+                }
+
+                if (accountId <= 0)
+                {
+                    throw new IndexOutOfRangeException("Account id was out of range");
+                }
+
+
+                var chat = new Chat()
+                {
+                    Title = title,
+                    CreatedAt = DateTime.Now,
+                };
+
+                chatsRepository.Create(chat);
+
+                var chatProfile = new ChatProfile()
+                {
+                    Account = accountsRepository.FindById(accountId)!,
+                    Chat = chat,
+                };
+
+                chatProfilesRepository.Create(chatProfile);
+
+                unitOfWork.Commit();
+
+                return new()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    ErrorMessage = "Success",
+                };
             }
-
-            if(accountId <= 0)
+            catch (Exception exception)
             {
-                throw new IndexOutOfRangeException("Account id was out of range");
+                return new()
+                {
+                    Error = true,
+                    ErrorCode = 403,
+                    ErrorMessage = "Cannot create a new chat",
+                    DetailedErrorInfo = new string[] { "Bad Request", $"Message: {exception.Message}" },
+                };
             }
+        }
 
-            var chat = new Chat()
+        public Response<IEnumerable<ChatDto>> GetChats()
+        {
+            var result = chatsRepository.GetAllChats().Select(account => account.ToDto());
+
+            return new()
             {
-                Title = title,
-                CreatedAt = DateTime.Now,
+                Error = false,
+                ErrorCode = 200,
+                Value = result,
+                ErrorMessage = "Success",
             };
+        }
 
-            chatsRepository.Create(chat);
-
-            var chatProfile = new ChatProfile()
+        public Response<IEnumerable<ChatDto>> GetAllUserChats(int userId)
+        {
+            try
             {
-                Account = accountsRepository.FindById(accountId),
-                Chat = chat,
-            };
+                var result = chatsRepository.GetAllUserChats(userId).Select(chat => chat.ToDto());
 
-            chatProfilesRepository.Create(chatProfile);
-
-            unitOfWork.Commit();
+                return new()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    Value = result,
+                    ErrorMessage = "Success",
+                };
+            }
+            catch (Exception exception)
+            {
+                return new()
+                {
+                    Error = true,
+                    ErrorCode = 404,
+                    ErrorMessage = "Could not find user",
+                    DetailedErrorInfo = new string[] { "Not Found", $"Message: {exception.Message}" }
+                };
+            }
         }
     }
 }

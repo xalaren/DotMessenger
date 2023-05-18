@@ -21,7 +21,7 @@ namespace DotMessenger.WebApi.Data.EntityFrameworkRepositories
 
         public void Delete(int chatId)
         {
-            Chat chat = context.Chats.Find(chatId);
+            Chat? chat = context.Chats.Find(chatId);
 
             if (chat != null)
             {
@@ -39,9 +39,22 @@ namespace DotMessenger.WebApi.Data.EntityFrameworkRepositories
             return context.Chats.SingleOrDefault(chat => string.Equals(chat.Title, title));
         }
 
+        public IEnumerable<Chat> GetAllChats()
+        {
+            return context.Chats;
+        }
+
         public IEnumerable<Chat> GetAllUserChats(int userId)
         {
-            throw new();
+            var chatProfiles = context.ChatProfiles.Where(chatProfile => chatProfile.AccountId == userId);
+
+            if (chatProfiles.Count() == 0)
+            {
+                throw new ArgumentNullException("User was not found");
+            }
+
+            //TODO: переписать на правильное нахождение
+            return context.Chats.Where(chat => chat.Id == 0);
         }
 
         public void Save()

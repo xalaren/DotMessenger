@@ -1,3 +1,4 @@
+using System;
 using DotMessenger.Core.Model.Entities;
 using DotMessenger.Core.Repositories;
 using DotMessenger.Shared.DataTransferObjects;
@@ -25,25 +26,53 @@ namespace DotMessenger.Core.Interactors
             this.unitOfWork = unitOfWork;
         }
 
-        public void RegisterNewAccount(AccountDto accountDto)
+        public Response RegisterNewAccount(AccountDto accountDto)
         {
-            if (!CheckForNullStrings(accountDto.Nickname, accountDto.Password, accountDto.Name, accountDto.Lastname))
+            try
             {
-                throw new ArgumentNullException("Not all required fields were filled");
+                if (!CheckForNullStrings(accountDto.Nickname, accountDto.Password, accountDto.Name, accountDto.Lastname))
+                {
+                    throw new ArgumentNullException("Not all required fields were filled");
+                }
+
+                if (accountDto.BirthDate != null)
+                {
+                    accountDto.Age = CalculateAge(accountDto.BirthDate);
+                }
+
+                repository.Create(accountDto.ToEntity());
+                unitOfWork.Commit();
+            }
+            catch(Exception exception)
+            {
+                return new()
+                {
+                    Error = true,
+                    ErrorCode = 403,
+                    ErrorMessage = "Cannot register account",
+                    DetailedErrorInfo = new string[] { "Bad request", $"Message:{exception.Message}" }
+                };
             }
 
-            if (accountDto.BirthDate != null)
+            return new()
             {
-                accountDto.Age = CalculateAge(accountDto.BirthDate);
-            }
-            
-            repository.Create(accountDto.ToEntity());
-            unitOfWork.Commit();
+                Error = false,
+                ErrorCode = 200,
+                ErrorMessage = "Success",
+            };
         }
 
-        public IEnumerable<AccountDto> GetAllAccounts()
+        public Response<IEnumerable<AccountDto>> GetAllAccounts()
         {
-            return repository.GetAllAccounts().Select(account => account.ToDto());
+            var result = repository.GetAllAccounts().Select(account => account.ToDto());
+
+            return new()
+            {
+                Error = false,
+                ErrorCode = 200,
+                Value = result,
+                ErrorMessage = "Success",
+            };
         }
         
         private bool CheckForNullStrings(params string[] values)
@@ -56,8 +85,13 @@ namespace DotMessenger.Core.Interactors
             return true;
         }
 
-        private int CalculateAge(DateTime? birthDate)
+        private int? CalculateAge(DateTime? birthDate)
         {
+            if(birthDate == null)
+            {
+                return null;
+            }
+
             var notNullBirthDate = birthDate.Value;
             var now = DateTime.Today;
             return now.Year - notNullBirthDate.Year - 1 +
