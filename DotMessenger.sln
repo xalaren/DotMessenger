@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMessenger.Core.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMessenger.WebApi", "DotMessenger.WebApi\DotMessenger.WebApi.csproj", "{B48D5A42-88EC-49CE-900A-A84B61C98AC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotMessenger.Shared", "DotMessenger.Shared\DotMessenger.Shared.csproj", "{B7FEB387-C49F-4B00-90D5-4DE2B59BE1D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMessenger.Shared", "DotMessenger.Shared\DotMessenger.Shared.csproj", "{B7FEB387-C49F-4B00-90D5-4DE2B59BE1D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotMessenger.Adapter", "DotMessenger.Adapter\DotMessenger.Adapter.csproj", "{D9F51FF5-4758-41BD-BEB4-D9D1803BA16E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B7FEB387-C49F-4B00-90D5-4DE2B59BE1D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7FEB387-C49F-4B00-90D5-4DE2B59BE1D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7FEB387-C49F-4B00-90D5-4DE2B59BE1D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9F51FF5-4758-41BD-BEB4-D9D1803BA16E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9F51FF5-4758-41BD-BEB4-D9D1803BA16E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9F51FF5-4758-41BD-BEB4-D9D1803BA16E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9F51FF5-4758-41BD-BEB4-D9D1803BA16E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

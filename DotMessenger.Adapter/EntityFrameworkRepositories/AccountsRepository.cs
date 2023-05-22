@@ -1,10 +1,10 @@
 using System.Security.Principal;
+using DotMessenger.Adapter.EntityFrameworkContexts;
 using DotMessenger.Core.Model.Entities;
 using DotMessenger.Core.Repositories;
-using DotMessenger.WebApi.Data.EntityFrameworkContexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotMessenger.WebApi.Data.EntityFrameworkRepositories
+namespace DotMessenger.Adapter.EntityFrameworkRepositories
 {
     public class AccountsRepository : IAccountsRepository
     {

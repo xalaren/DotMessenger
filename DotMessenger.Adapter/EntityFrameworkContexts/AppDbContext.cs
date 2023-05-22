@@ -1,9 +1,8 @@
+using DotMessenger.Adapter.EntityTypeConfigurations;
 using DotMessenger.Core.Model.Entities;
-using DotMessenger.WebApi.Data.EntityTypeConfigurations;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotMessenger.WebApi.Data.EntityFrameworkContexts
+namespace DotMessenger.Adapter.EntityFrameworkContexts
 {
     public class AppDbContext : DbContext
     {

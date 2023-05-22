@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DotMessenger.WebApi.Data.EntityTypeConfigurations
+namespace DotMessenger.Adapter.EntityTypeConfigurations
 {
     public class ChatsEntityTypeConfiguration : IEntityTypeConfiguration<Chat>
     {

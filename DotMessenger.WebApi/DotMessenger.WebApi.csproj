@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
@@ -21,12 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DotMessenger.Adapter\DotMessenger.Adapter.csproj" />
     <ProjectReference Include="..\DotMessenger.Core\DotMessenger.Core.csproj" />
     <ProjectReference Include="..\DotMessenger.Shared\DotMessenger.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\SQLiteDatabases\" />
   </ItemGroup>
 
 </Project>

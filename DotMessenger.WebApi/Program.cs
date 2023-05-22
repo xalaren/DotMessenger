@@ -1,7 +1,7 @@
+using DotMessenger.Adapter.EntityFrameworkContexts;
+using DotMessenger.Adapter.EntityFrameworkRepositories;
 using DotMessenger.Core.Interactors;
 using DotMessenger.Core.Repositories;
-using DotMessenger.WebApi.Data.EntityFrameworkContexts;
-using DotMessenger.WebApi.Data.EntityFrameworkRepositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotMessenger.WebApi

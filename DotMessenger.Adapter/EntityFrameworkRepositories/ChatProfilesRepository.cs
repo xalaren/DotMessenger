@@ -1,8 +1,8 @@
-﻿using DotMessenger.Core.Model.Entities;
+﻿using DotMessenger.Adapter.EntityFrameworkContexts;
+using DotMessenger.Core.Model.Entities;
 using DotMessenger.Core.Repositories;
-using DotMessenger.WebApi.Data.EntityFrameworkContexts;
 
-namespace DotMessenger.WebApi.Data.EntityFrameworkRepositories
+namespace DotMessenger.Adapter.EntityFrameworkRepositories
 {
     public class ChatProfilesRepository : IChatProfilesRepository
     {

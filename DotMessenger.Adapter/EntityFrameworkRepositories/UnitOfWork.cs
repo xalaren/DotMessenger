@@ -1,7 +1,7 @@
-﻿using DotMessenger.Core.Repositories;
-using DotMessenger.WebApi.Data.EntityFrameworkContexts;
+﻿using DotMessenger.Adapter.EntityFrameworkContexts;
+using DotMessenger.Core.Repositories;
 
-namespace DotMessenger.WebApi.Data.EntityFrameworkRepositories
+namespace DotMessenger.Adapter.EntityFrameworkRepositories
 {
     public class UnitOfWork : IUnitOfWork
     {
