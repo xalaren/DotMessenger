@@ -8,6 +8,6 @@ namespace DotMessenger.Core.Repositories
         Account? FindById(int accountId);
         void Update(Account account);
         void Remove(int accountId);
-        IEnumerable<Account> GetAllAccounts();
+        Account[] GetAllAccounts();
     }
 }

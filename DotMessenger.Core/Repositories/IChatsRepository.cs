@@ -9,7 +9,7 @@ namespace DotMessenger.Core.Repositories
         void Delete(int chatId);
         Chat? FindById(int chatId);
         Chat? FindByTitle(string title);
-        IEnumerable<Chat> GetAllChats();
-        IEnumerable<Chat> GetAllUserChats(int userId);
+        Chat[]? GetAllChats();
+        Chat[]? GetAllUserChats(int userId);
     }
 }

@@ -1,7 +1,10 @@
 using System;
+using DotMessenger.Core.Interactors.Mappers;
 using DotMessenger.Core.Model.Entities;
 using DotMessenger.Core.Repositories;
 using DotMessenger.Shared.DataTransferObjects;
+using DotMessenger.Shared.Exceptions;
+using DotMessenger.Shared.Responses;
 
 namespace DotMessenger.Core.Interactors
 {
@@ -32,7 +35,7 @@ namespace DotMessenger.Core.Interactors
             {
                 if (!CheckForNullStrings(accountDto.Nickname, accountDto.Password, accountDto.Name, accountDto.Lastname))
                 {
-                    throw new ArgumentNullException("Not all required fields were filled");
+                    throw new BadRequestException("Not all required fields were filled");
                 }
 
                 if (accountDto.BirthDate != null)
@@ -43,14 +46,14 @@ namespace DotMessenger.Core.Interactors
                 repository.Create(accountDto.ToEntity());
                 unitOfWork.Commit();
             }
-            catch(Exception exception)
+            catch(AppException exception)
             {
                 return new()
                 {
                     Error = true,
-                    ErrorCode = 403,
+                    ErrorCode = exception.Code,
                     ErrorMessage = "Cannot register account",
-                    DetailedErrorInfo = new string[] { "Bad request", $"Message:{exception.Message}" }
+                    DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message:{exception.Message}" }
                 };
             }
 
@@ -62,9 +65,12 @@ namespace DotMessenger.Core.Interactors
             };
         }
 
-        public Response<IEnumerable<AccountDto>> GetAllAccounts()
+        public Response<AccountDto[]> GetAllAccounts()
         {
-            var result = repository.GetAllAccounts().Select(account => account.ToDto());
+            var result = repository
+                .GetAllAccounts()
+                .Select(account => account.ToDto())
+                .ToArray();
 
             return new()
             {

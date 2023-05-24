@@ -39,14 +39,9 @@ namespace DotMessenger.Adapter.EntityFrameworkRepositories
             }
         }
 
-        public void Save()
+        public Account[] GetAllAccounts()
         {
-            context.SaveChanges();
-        }
-
-        public IEnumerable<Account> GetAllAccounts()
-        {
-            return context.Accounts;
+            return context.Accounts.ToArray();
         }
     }
 }

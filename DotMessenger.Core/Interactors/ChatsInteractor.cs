@@ -1,6 +1,9 @@
-﻿using DotMessenger.Core.Model.Entities;
+﻿using DotMessenger.Core.Interactors.Mappers;
+using DotMessenger.Core.Model.Entities;
 using DotMessenger.Core.Repositories;
 using DotMessenger.Shared.DataTransferObjects;
+using DotMessenger.Shared.Exceptions;
+using DotMessenger.Shared.Responses;
 
 namespace DotMessenger.Core.Interactors
 {
@@ -17,7 +20,6 @@ namespace DotMessenger.Core.Interactors
             IAccountsRepository accountsRepository,
             IUnitOfWork unitOfWork)
         {
-
             if (chatsRepository == null || chatProfilesRepository == null || accountsRepository == null)
             {
                 throw new ArgumentNullException("One of the repositories was null");
@@ -40,12 +42,12 @@ namespace DotMessenger.Core.Interactors
             {
                 if (string.IsNullOrWhiteSpace(title))
                 {
-                    throw new ArgumentNullException("Title was null", nameof(title));
+                    throw new BadRequestException("Title was null");
                 }
 
                 if (accountId <= 0)
                 {
-                    throw new IndexOutOfRangeException("Account id was out of range");
+                    throw new BadRequestException("Account id was out of range");
                 }
 
 
@@ -74,21 +76,24 @@ namespace DotMessenger.Core.Interactors
                     ErrorMessage = "Success",
                 };
             }
-            catch (Exception exception)
+            catch (AppException exception)
             {
                 return new()
                 {
                     Error = true,
-                    ErrorCode = 403,
+                    ErrorCode = exception.Code,
                     ErrorMessage = "Cannot create a new chat",
-                    DetailedErrorInfo = new string[] { "Bad Request", $"Message: {exception.Message}" },
+                    DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" },
                 };
             }
         }
 
-        public Response<IEnumerable<ChatDto>> GetChats()
+        public Response<ChatDto[]> GetChats()
         {
-            var result = chatsRepository.GetAllChats().Select(account => account.ToDto());
+            var result = chatsRepository
+                .GetAllChats()
+                .Select(account => account.ToDto())
+                .ToArray();
 
             return new()
             {
@@ -99,30 +104,20 @@ namespace DotMessenger.Core.Interactors
             };
         }
 
-        public Response<IEnumerable<ChatDto>> GetAllUserChats(int userId)
+        public Response<ChatDto[]> GetAllUserChats(int userId)
         {
-            try
-            {
-                var result = chatsRepository.GetAllUserChats(userId).Select(chat => chat.ToDto());
+            var result = chatsRepository
+                .GetAllUserChats(userId)
+                .Select(chat => chat.ToDto())
+                .ToArray();
 
-                return new()
-                {
-                    Error = false,
-                    ErrorCode = 200,
-                    Value = result,
-                    ErrorMessage = "Success",
-                };
-            }
-            catch (Exception exception)
+            return new()
             {
-                return new()
-                {
-                    Error = true,
-                    ErrorCode = 404,
-                    ErrorMessage = "Could not find user",
-                    DetailedErrorInfo = new string[] { "Not Found", $"Message: {exception.Message}" }
-                };
-            }
+                Error = false,
+                ErrorCode = 200,
+                Value = result,
+                ErrorMessage = "Success",
+            };
         }
     }
 }

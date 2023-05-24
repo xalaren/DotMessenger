@@ -39,29 +39,35 @@ namespace DotMessenger.Adapter.EntityFrameworkRepositories
             return context.Chats.SingleOrDefault(chat => string.Equals(chat.Title, title));
         }
 
-        public IEnumerable<Chat> GetAllChats()
+        public Chat[]? GetAllChats()
         {
-            return context.Chats;
+            return context.Chats.ToArray();
         }
 
-        public IEnumerable<Chat> GetAllUserChats(int userId)
+        public Chat[]? GetAllUserChats(int userId)
         {
-            var chatProfiles = context.ChatProfiles.Where(chatProfile => chatProfile.AccountId == userId);
+            var account = context.Accounts.Find(userId);
 
-            if (chatProfiles.Count() == 0)
+            if (account == null)
             {
-                throw new ArgumentNullException("User was not found");
+                return null;
             }
 
-            //TODO: переписать на правильное нахождение
-            return context.Chats.Where(chat => chat.Id == 0);
-        }
+            context.Accounts.Entry(account)
+                .Collection(acc => acc.ChatProfiles)
+                .Load();
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
+            var profiles = account.ChatProfiles;
 
+            foreach (var profile in profiles)
+            {
+                context.ChatProfiles.Entry(profile)
+                    .Reference(p => p.Chat)
+                    .Load();
+            }
+
+            return profiles.Select(profile => profile.Chat).ToArray();
+        }
         public void Update(Chat chat)
         {
             context.Entry(chat).State = EntityState.Modified;

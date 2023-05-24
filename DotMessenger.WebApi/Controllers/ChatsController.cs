@@ -1,4 +1,5 @@
 ﻿using DotMessenger.Core.Interactors;
+using DotMessenger.Shared.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotMessenger.WebApi.Controllers

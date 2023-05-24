@@ -15,6 +15,6 @@
         public int? AppRoleId { get; set; }
         public AppRole? GlobalRole { get; set; }
 
-        public ICollection<ChatProfile?>? ChatProfiles { get; set; }
+        public ICollection<ChatProfile> ChatProfiles { get; set; } = new List<ChatProfile>();
     }
 }

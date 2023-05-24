@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace DotMessenger.Core.Interactors
+namespace DotMessenger.Shared.Responses
 {
     public class Response<T> : Response where T : class
     {
@@ -12,15 +12,15 @@ namespace DotMessenger.Core.Interactors
             Value = value;
         }
 
-        public T? Value { get; init; }
+        public T? Value { get; set; }
     }
 
     public class Response
     {
-        public bool Error { get; init; }
-        public string? ErrorMessage { get; init; }
-        public int ErrorCode { get; init; }
-        public string[]? DetailedErrorInfo { get; init; }
+        public bool Error { get; set; }
+        public string? ErrorMessage { get; set; }
+        public int ErrorCode { get; set; }
+        public string[]? DetailedErrorInfo { get; set; }
 
         public Response() { }
 
@@ -43,7 +43,7 @@ namespace DotMessenger.Core.Interactors
             {
                 builder.AppendLine("Details:");
 
-                foreach(var info in DetailedErrorInfo)
+                foreach (var info in DetailedErrorInfo)
                 {
                     builder.AppendLine($"\t{info}");
                 }

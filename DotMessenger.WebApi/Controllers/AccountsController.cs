@@ -1,5 +1,6 @@
 using DotMessenger.Core.Interactors;
 using DotMessenger.Shared.DataTransferObjects;
+using DotMessenger.Shared.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotMessenger.WebApi.Controllers
@@ -22,7 +23,7 @@ namespace DotMessenger.WebApi.Controllers
         }
 
         [HttpGet("get-all")]
-        public Response<IEnumerable<AccountDto>> GetAllAccounts()
+        public Response<AccountDto[]> GetAllAccounts()
         {
            return accountsInteractor.GetAllAccounts();
         }

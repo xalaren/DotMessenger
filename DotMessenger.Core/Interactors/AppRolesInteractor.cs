@@ -49,6 +49,5 @@ namespace DotMessenger.Core.Interactors
 
             unitOfWork.Commit();
         }
-        
     }
 }
