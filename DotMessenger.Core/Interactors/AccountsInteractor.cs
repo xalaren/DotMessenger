@@ -20,11 +20,11 @@ namespace DotMessenger.Core.Interactors
                 throw new ArgumentNullException("AccountsRepository example was null", nameof(repository));
             }
 
-            if(unitOfWork == null)
+            if (unitOfWork == null)
             {
                 throw new ArgumentNullException("Unit of work example was null", nameof(unitOfWork));
             }
-            
+
             this.repository = repository;
             this.unitOfWork = unitOfWork;
         }
@@ -33,7 +33,8 @@ namespace DotMessenger.Core.Interactors
         {
             try
             {
-                if (!CheckForNullStrings(accountDto.Nickname, accountDto.Password, accountDto.Name, accountDto.Lastname))
+                if (!CheckForNullStrings(accountDto.Nickname, accountDto.Password, accountDto.Name,
+                        accountDto.Lastname))
                 {
                     throw new BadRequestException("Not all required fields were filled");
                 }
@@ -46,7 +47,7 @@ namespace DotMessenger.Core.Interactors
                 repository.Create(accountDto.ToEntity());
                 unitOfWork.Commit();
             }
-            catch(AppException exception)
+            catch (AppException exception)
             {
                 return new()
                 {
@@ -65,6 +66,48 @@ namespace DotMessenger.Core.Interactors
             };
         }
 
+        public Response UpdateAccount(AccountDto accountDto)
+        {
+            try
+            {
+                if (accountDto == null || 
+                    CheckForNullStrings(accountDto.Nickname, accountDto.Password,
+                        accountDto.Name, accountDto.Lastname))
+                {
+                    throw new BadRequestException("Account data was null or empty");
+                }
+
+                var account = repository.FindById(accountDto.Id);
+
+                if (account == null)
+                {
+                    throw new NotFoundException("Account not found");
+                }
+                
+                repository.Update(accountDto.ToEntity());
+
+                return new Response()
+                {
+                    Error = false,
+                    ErrorMessage = "Success",
+                };
+            }
+            catch (AppException exception)
+            {
+                return new Response()
+                {
+                    Error = true,
+                    ErrorCode = exception.Code,
+                    ErrorMessage = "Cannot update an account",
+                    DetailedErrorInfo = new string[]
+                    {
+                        $"Type: {exception.Detail}",
+                        $"Message: {exception.Message}"
+                    },
+                };
+            }
+        }
+
         public Response<AccountDto[]> GetAllAccounts()
         {
             var result = repository
@@ -80,20 +123,20 @@ namespace DotMessenger.Core.Interactors
                 ErrorMessage = "Success",
             };
         }
-        
+
         private bool CheckForNullStrings(params string[] values)
         {
             foreach (var value in values)
             {
-                if (string.IsNullOrWhiteSpace(value)) return false;
+                if (string.IsNullOrWhiteSpace(value)) return true;
             }
 
-            return true;
+            return false;
         }
 
         private int? CalculateAge(DateTime? birthDate)
         {
-            if(birthDate == null)
+            if (birthDate == null)
             {
                 return null;
             }
@@ -101,7 +144,10 @@ namespace DotMessenger.Core.Interactors
             var notNullBirthDate = birthDate.Value;
             var now = DateTime.Today;
             return now.Year - notNullBirthDate.Year - 1 +
-                   ((now.Month > notNullBirthDate.Month || now.Month == notNullBirthDate.Month && now.Day >= notNullBirthDate.Day) ? 1 : 0);
+                   ((now.Month > notNullBirthDate.Month ||
+                     now.Month == notNullBirthDate.Month && now.Day >= notNullBirthDate.Day)
+                       ? 1
+                       : 0);
         }
     }
 }

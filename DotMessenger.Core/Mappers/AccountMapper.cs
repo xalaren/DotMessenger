@@ -46,4 +46,16 @@ public static class AccountMapper
             Age = accountDto.Age
         };
     }
+
+    public static Account Assign(this Account account, AccountDto accountDto)
+    {
+        account.Nickname = accountDto.Nickname;
+        account.Name = accountDto.Name;
+        account.Lastname = accountDto.Lastname;
+        account.Password = accountDto.Password;
+        account.Email = accountDto.Email;
+        account.Phone = accountDto.Phone;
+        account.BirthDate = accountDto.BirthDate;
+        account.Age = accountDto.Age;
+    }
 }
