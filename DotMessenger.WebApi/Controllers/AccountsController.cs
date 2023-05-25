@@ -27,6 +27,7 @@ namespace DotMessenger.WebApi.Controllers
         {
             return accountsInteractor.UpdateAccount(accountDto);
         }
+
         [HttpGet("get-all")]
         public Response<AccountDto[]> GetAllAccounts()
         {

@@ -57,5 +57,7 @@ public static class AccountMapper
         account.Phone = accountDto.Phone;
         account.BirthDate = accountDto.BirthDate;
         account.Age = accountDto.Age;
+
+        return account;
     }
 }

@@ -33,7 +33,7 @@ namespace DotMessenger.Core.Interactors
         {
             try
             {
-                if (!CheckForNullStrings(accountDto.Nickname, accountDto.Password, accountDto.Name,
+                if (CheckForNullStrings(accountDto.Nickname, accountDto.Password, accountDto.Name,
                         accountDto.Lastname))
                 {
                     throw new BadRequestException("Not all required fields were filled");
@@ -84,7 +84,8 @@ namespace DotMessenger.Core.Interactors
                     throw new NotFoundException("Account not found");
                 }
                 
-                repository.Update(accountDto.ToEntity());
+                repository.Update(account.Assign(accountDto));
+                unitOfWork.Commit();
 
                 return new Response()
                 {
