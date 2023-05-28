@@ -1,4 +1,6 @@
 ﻿using DotMessenger.Core.Interactors;
+using DotMessenger.Core.Model.Entities;
+using DotMessenger.Shared.DataTransferObjects;
 using DotMessenger.Shared.Responses;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,16 +23,40 @@ namespace DotMessenger.WebApi.Controllers
             return chatsInteractor.CreateChat(accountId, title);
         }
 
-        [HttpGet("get-all")]
+        [HttpPost("invite")]
+        public Response Invite(int accountId, int chatId)
+        {
+            return chatsInteractor.Invite(accountId, chatId);
+        }
+
+        [HttpPost("update")]
+        public Response UpdateChat(int chatId, string title)
+        {
+            return chatsInteractor.UpdateChat(chatId, title);
+        }
+
+        [HttpGet("getAll")]
         public Response GetAllChats()
         {
             return chatsInteractor.GetChats();
         }
 
-        [HttpGet("get-all-user")]
+        [HttpGet("getChatsFromUser")]
         public Response GetAllUserChats(int userId)
         {
             return chatsInteractor.GetAllUserChats(userId);
+        }
+
+        [HttpGet("getUsers")]
+        public Response<ChatProfileDto[]> GetUsers(int chatId)
+        {
+            return chatsInteractor.GetUsersFromChat(chatId);
+        }
+
+        [HttpDelete("delete-chat")]
+        public Response DeleteChat(int chatId)
+        {
+            return chatsInteractor.DeleteChat(chatId);
         }
     }
 }

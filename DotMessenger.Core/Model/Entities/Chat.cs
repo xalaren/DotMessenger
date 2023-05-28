@@ -1,12 +1,18 @@
-namespace DotMessenger.Core.Model.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Chat
+namespace DotMessenger.Core.Model.Entities
 {
-    public int Id { get; set; }
+    public class Chat
+    {
+        public int Id { get; set; }
+        public string Title { get; set; } = null!;
+        public DateTime CreatedAt { get; set; }
 
-    public string Title { get; set; } = null!;
-    public DateTime CreatedAt { get; set; }
-    
-    public ICollection<Message> Messages { get; set; } = new List<Message>();
-    public ICollection<ChatProfile>? ChatProfiles { get; set; } = new List<ChatProfile>();
+        public ICollection<ChatProfile> ChatProfiles { get; set; } = new List<ChatProfile>();
+        public ICollection<Message> Messages { get; set; } = new List<Message>();
+    }
 }

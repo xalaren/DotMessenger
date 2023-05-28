@@ -19,14 +19,9 @@ namespace DotMessenger.Adapter.EntityFrameworkRepositories
             context.Add(chat);
         }
 
-        public void Delete(int chatId)
+        public void Delete(Chat chat)
         {
-            Chat? chat = context.Chats.Find(chatId);
-
-            if (chat != null)
-            {
-                context.Remove(chat);
-            }
+            context.Chats.Remove(chat);
         }
 
         public Chat? FindById(int chatId)

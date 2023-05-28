@@ -9,8 +9,6 @@
         public string Lastname { get; set; } = null!;
         public string? Email { get; set; }
         public string? Phone { get; set; }
-        public DateTime? BirthDate { get; set; }
-        public int? Age { get; set; }
          
         public int? AppRoleId { get; set; }
         public AppRole? GlobalRole { get; set; }

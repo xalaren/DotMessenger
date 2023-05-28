@@ -10,6 +10,7 @@ namespace DotMessenger.Adapter.EntityFrameworkContexts
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<Chat> Chats { get; set; }
         public DbSet<ChatProfile> ChatProfiles { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
         public AppDbContext(DbContextOptions options) : base(options)
         {
@@ -21,6 +22,7 @@ namespace DotMessenger.Adapter.EntityFrameworkContexts
             modelBuilder.ApplyConfiguration(new AccountsEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ChatsEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ChatProfilesEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new MessagesEntityTypeConfiguration());
         }
     }
 }

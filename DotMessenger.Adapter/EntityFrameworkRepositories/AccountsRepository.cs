@@ -31,7 +31,7 @@ namespace DotMessenger.Adapter.EntityFrameworkRepositories
 
         public void Remove(int accountId)
         {
-            Account account = context.Accounts.Find(accountId);
+            Account? account = context.Accounts.Find(accountId);
 
             if (account != null)
             {

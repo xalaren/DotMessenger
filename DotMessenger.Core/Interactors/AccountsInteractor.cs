@@ -1,6 +1,6 @@
 using System;
+using System.Data.Common;
 using DotMessenger.Core.Interactors.Mappers;
-using DotMessenger.Core.Model.Entities;
 using DotMessenger.Core.Repositories;
 using DotMessenger.Shared.DataTransferObjects;
 using DotMessenger.Shared.Exceptions;
@@ -38,12 +38,6 @@ namespace DotMessenger.Core.Interactors
                 {
                     throw new BadRequestException("Not all required fields were filled");
                 }
-
-                if (accountDto.BirthDate != null)
-                {
-                    accountDto.Age = CalculateAge(accountDto.BirthDate);
-                }
-
                 repository.Create(accountDto.ToEntity());
                 unitOfWork.Commit();
             }
@@ -55,6 +49,16 @@ namespace DotMessenger.Core.Interactors
                     ErrorCode = exception.Code,
                     ErrorMessage = "Cannot register account",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message:{exception.Message}" }
+                };
+            }
+            catch(ArgumentOutOfRangeException exception)
+            {
+                return new()
+                {
+                    Error = true,
+                    ErrorCode = 400,
+                    ErrorMessage = "Cannot register account",
+                    DetailedErrorInfo = new string[] { $"Type: Bad request", $"Message:{exception.Message}" }
                 };
             }
 
@@ -135,20 +139,5 @@ namespace DotMessenger.Core.Interactors
             return false;
         }
 
-        private int? CalculateAge(DateTime? birthDate)
-        {
-            if (birthDate == null)
-            {
-                return null;
-            }
-
-            var notNullBirthDate = birthDate.Value;
-            var now = DateTime.Today;
-            return now.Year - notNullBirthDate.Year - 1 +
-                   ((now.Month > notNullBirthDate.Month ||
-                     now.Month == notNullBirthDate.Month && now.Day >= notNullBirthDate.Day)
-                       ? 1
-                       : 0);
-        }
     }
 }

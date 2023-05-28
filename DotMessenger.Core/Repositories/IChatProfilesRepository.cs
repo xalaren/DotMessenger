@@ -6,5 +6,6 @@ namespace DotMessenger.Core.Repositories
     {
         void Create(ChatProfile chatProfile);
         ChatProfile? GetChatProfile(int accountId, int chatId);
+        ChatProfile[]? GetChatProfiles(int chatId);
     }
 }

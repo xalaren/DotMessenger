@@ -1,4 +1,6 @@
-﻿using DotMessenger.Core.Interactors.Mappers;
+﻿using System.Security.Principal;
+using DotMessenger.Core.Interactors.Mappers;
+using DotMessenger.Core.Mappers;
 using DotMessenger.Core.Model.Entities;
 using DotMessenger.Core.Repositories;
 using DotMessenger.Shared.DataTransferObjects;
@@ -50,7 +52,6 @@ namespace DotMessenger.Core.Interactors
                     throw new BadRequestException("Account id was out of range");
                 }
 
-
                 var chat = new Chat()
                 {
                     Title = title,
@@ -66,7 +67,6 @@ namespace DotMessenger.Core.Interactors
                 };
 
                 chatProfilesRepository.Create(chatProfile);
-
                 unitOfWork.Commit();
 
                 return new()
@@ -88,10 +88,100 @@ namespace DotMessenger.Core.Interactors
             }
         }
 
+        public Response Invite(int accountId, int chatId)
+        {
+            try
+            {
+                var account = accountsRepository.FindById(accountId);
+                var chat = chatsRepository.FindById(chatId);
+                if(account == null)
+                {
+                    throw new NotFoundException("Account not found");
+                }
+
+                if(chat == null)
+                {
+                    throw new NotFoundException("Chat not found");
+                }
+
+
+                var chatProfile = new ChatProfile()
+                {
+                    Account = account,
+                    Chat = chat,
+                };
+
+                chatProfilesRepository.Create(chatProfile);
+                unitOfWork.Commit();
+
+                return new Response()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    ErrorMessage = "Success",
+                };
+            }
+            catch(AppException exception)
+            {
+                return new Response()
+                {
+                    Error = true,
+                    ErrorCode = exception.Code,
+                    ErrorMessage = "Cannot invite user",
+                    DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
+                };
+            }
+        }
+
+        public Response UpdateChat(int chatId, string title)
+        {
+            try
+            {
+                var chat = chatsRepository.FindById(chatId);
+
+                if (chat == null)
+                {
+                    throw new NotFoundException("Chat not found");
+                }
+
+                chat.Title = title;
+
+                chatsRepository.Update(chat);
+                unitOfWork.Commit();
+
+                return new Response()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    ErrorMessage = "Success"
+                };
+            }
+            catch(AppException exception)
+            {
+                return new Response()
+                {
+                    Error = true,
+                    ErrorCode = exception.Code,
+                    ErrorMessage = "Cannot update chat",
+                    DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
+                };
+            }
+        }
+
         public Response<ChatDto[]> GetChats()
         {
-            var result = chatsRepository
-                .GetAllChats()
+            var result = chatsRepository.GetAllChats();
+
+            if(result == null)
+            {
+                return new Response<ChatDto[]>()
+                {
+                    Error = false,
+                    ErrorMessage = "No such chats"
+                };
+            }
+
+            var mapped = result
                 .Select(account => account.ToDto())
                 .ToArray();
 
@@ -99,15 +189,25 @@ namespace DotMessenger.Core.Interactors
             {
                 Error = false,
                 ErrorCode = 200,
-                Value = result,
+                Value = mapped,
                 ErrorMessage = "Success",
             };
         }
 
         public Response<ChatDto[]> GetAllUserChats(int userId)
         {
-            var result = chatsRepository
-                .GetAllUserChats(userId)
+            var result = chatsRepository.GetAllUserChats(userId);
+
+            if (result == null)
+            {
+                return new Response<ChatDto[]>()
+                {
+                    Error = false,
+                    ErrorMessage = "No such chats"
+                };
+            }
+
+            var mapped = result
                 .Select(chat => chat.ToDto())
                 .ToArray();
 
@@ -115,9 +215,69 @@ namespace DotMessenger.Core.Interactors
             {
                 Error = false,
                 ErrorCode = 200,
-                Value = result,
+                Value = mapped,
                 ErrorMessage = "Success",
             };
+        }
+
+        public Response<ChatProfileDto[]> GetUsersFromChat(int chatId)
+        {
+            var result = chatProfilesRepository.GetChatProfiles(chatId);
+
+            if(result == null)
+            {
+                return new Response<ChatProfileDto[]>()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    ErrorMessage = "No chat profiles"
+                };
+            }
+
+            var mapped = result
+                .Select(chatProfile => chatProfile.ToDto())
+                .ToArray();
+
+            return new Response<ChatProfileDto[]>()
+            {
+                Error = false,
+                ErrorCode = 200,
+                ErrorMessage = "Success",
+                Value = mapped,
+            };
+        }
+
+        public Response DeleteChat(int chatId)
+        {
+            try
+            {
+                var chat = chatsRepository.FindById(chatId);
+
+                if (chat == null)
+                {
+                    throw new NotFoundException("Chat not found");
+                }
+
+                chatsRepository.Delete(chat);
+                unitOfWork.Commit();
+
+                return new Response()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    ErrorMessage = "Success",
+                };
+            }
+            catch(AppException exception)
+            {
+                return new Response()
+                {
+                    Error = true,
+                    ErrorCode = exception.Code,
+                    ErrorMessage = "Cannot delete the chat",
+                    DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
+                };
+            }
         }
     }
 }

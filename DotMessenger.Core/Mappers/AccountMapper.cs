@@ -1,5 +1,8 @@
+using System.Security.AccessControl;
+using DotMessenger.Core.Mappers;
 using DotMessenger.Core.Model.Entities;
 using DotMessenger.Shared.DataTransferObjects;
+using Microsoft.VisualBasic;
 
 namespace DotMessenger.Core.Interactors.Mappers;
 
@@ -12,7 +15,7 @@ public static class AccountMapper
             throw new ArgumentNullException();
         }
 
-        return new AccountDto()
+        var accountDto = new AccountDto()
         {
             Id = account.Id,
             Nickname = account.Nickname,
@@ -21,9 +24,10 @@ public static class AccountMapper
             Password = account.Password,
             Email = account.Email,
             Phone = account.Phone,
-            BirthDate = account.BirthDate,
-            Age = account.Age
         };
+
+        return accountDto;
+
     }
 
     public static Account ToEntity(this AccountDto accountDto)
@@ -33,7 +37,7 @@ public static class AccountMapper
             throw new ArgumentNullException();
         }
 
-        return new Account()
+        var account = new Account()
         {
             Id = accountDto.Id,
             Nickname = accountDto.Nickname,
@@ -42,21 +46,19 @@ public static class AccountMapper
             Password = accountDto.Password,
             Email = accountDto.Email,
             Phone = accountDto.Phone,
-            BirthDate = accountDto.BirthDate,
-            Age = accountDto.Age
         };
+
+        return account;
     }
 
     public static Account Assign(this Account account, AccountDto accountDto)
     {
-        account.Nickname = accountDto.Nickname;
-        account.Name = accountDto.Name;
-        account.Lastname = accountDto.Lastname;
-        account.Password = accountDto.Password;
-        account.Email = accountDto.Email;
-        account.Phone = accountDto.Phone;
-        account.BirthDate = accountDto.BirthDate;
-        account.Age = accountDto.Age;
+        account.Nickname = accountDto.Nickname ?? account.Nickname;
+        account.Name = accountDto.Name ?? account.Name;
+        account.Lastname = accountDto.Lastname ?? account.Lastname;
+        account.Password = accountDto.Password ?? account.Password;
+        account.Email = accountDto.Email ?? account.Email;
+        account.Phone = accountDto.Phone ?? account.Phone;
 
         return account;
     }
