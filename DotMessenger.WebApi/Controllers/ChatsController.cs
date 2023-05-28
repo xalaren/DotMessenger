@@ -29,6 +29,18 @@ namespace DotMessenger.WebApi.Controllers
             return chatsInteractor.Invite(accountId, chatId);
         }
 
+        [HttpPost("quit")]
+        public Response Quit(int requestAccountId, int accountId, int chatId)
+        {
+            return chatsInteractor.Quit(requestAccountId, accountId, chatId);
+        }
+
+        [HttpPost("kick")]
+        public Response Kick(int accountId, int chatId)
+        {
+            return chatsInteractor.Kick(accountId, chatId);
+        }
+
         [HttpPost("update")]
         public Response UpdateChat(int chatId, string title)
         {

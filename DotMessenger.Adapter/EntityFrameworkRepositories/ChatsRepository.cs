@@ -29,6 +29,29 @@ namespace DotMessenger.Adapter.EntityFrameworkRepositories
             return context.Chats.Find(chatId);
         }
 
+        public Chat? FindByIdIncludeProfiles(int chatId)
+        {
+            var chat = FindById(chatId);
+
+            if(chat == null)
+            {
+                return null;
+            }
+
+            context.Entry(chat)
+                .Collection(c => c.ChatProfiles)
+                .Load();
+
+            foreach(var profile in context.ChatProfiles)
+            {
+                context.Entry(profile)
+                    .Reference(p => p.Account)
+                    .Load();
+            }
+
+            return chat;
+        }
+
         public Chat? FindByTitle(string title)
         {
             return context.Chats.SingleOrDefault(chat => string.Equals(chat.Title, title));

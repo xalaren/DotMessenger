@@ -8,6 +8,7 @@ namespace DotMessenger.Core.Repositories
         void Update(Chat chat);
         void Delete(Chat chat);
         Chat? FindById(int chatId);
+        Chat? FindByIdIncludeProfiles(int chatId);
         Chat? FindByTitle(string title);
         Chat[]? GetAllChats();
         Chat[]? GetAllUserChats(int userId);

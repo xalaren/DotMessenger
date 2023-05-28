@@ -34,6 +34,11 @@ namespace DotMessenger.Adapter.EntityFrameworkRepositories
                 .Where(x => x.ChatId == chatId).ToArray();
         }
 
+        public void Remove(ChatProfile chatProfile)
+        {
+            context.ChatProfiles.Remove(chatProfile);
+        }
+
         public void Save()
         {
             context.SaveChanges();

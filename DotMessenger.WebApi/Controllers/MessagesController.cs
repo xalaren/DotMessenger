@@ -30,7 +30,7 @@ namespace DotMessenger.WebApi.Controllers
 
         [HttpDelete("deleteRequest")]
         public Response RequestDeleteMessage(int accountId, int messageId)
-        {
+        { 
             return messagesInteractor.RemoveRequest(accountId, messageId);
         }
 

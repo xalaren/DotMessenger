@@ -133,6 +133,90 @@ namespace DotMessenger.Core.Interactors
             }
         }
 
+        public Response Quit(int requestAccountId, int accountId, int chatId)
+        {
+            try
+            {
+                var account = accountsRepository.FindById(accountId);
+                var chat = chatsRepository.FindByIdIncludeProfiles(chatId);
+
+                if(account == null)
+                {
+                    throw new NotFoundException("User not found");
+                }
+
+                if(chat == null)
+                {
+                    throw new NotFoundException("Chat not found");
+                }
+
+                var reqAccount = chat.ChatProfiles.FirstOrDefault(c => c.AccountId == requestAccountId);
+
+                if(reqAccount == null)
+                {
+                    throw new NotFoundException("User is not in chat");
+                }
+
+                if(reqAccount.AccountId != accountId)
+                {
+                    throw new NotAllowedException("Cannot kick other users");
+                }
+
+                chatProfilesRepository.Remove(reqAccount);
+                unitOfWork.Commit();
+
+                return new Response()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    ErrorMessage = "Success",
+                };
+            }
+            catch(AppException exception)
+            {
+                return new Response()
+                {
+                    Error = true,
+                    ErrorCode = exception.Code,
+                    ErrorMessage = "Cannot quit from chat",
+                    DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
+                };
+            }
+        }
+
+        public Response Kick(int accountId, int chatId)
+        {
+            try
+            {
+                var chatProfile = chatProfilesRepository.GetChatProfile(accountId, chatId);
+
+                if(chatProfile == null)
+                {
+                    throw new NotFoundException("Chat profile not found");
+                }
+
+                chatProfilesRepository.Remove(chatProfile);
+                unitOfWork.Commit();
+
+                return new Response()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    ErrorMessage = "Success",
+                };
+            }
+            catch (AppException exception)
+            {
+                return new Response()
+                {
+                    Error = true,
+                    ErrorCode = exception.Code,
+                    ErrorMessage = "Cannot kick from chat",
+                    DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
+                };
+            }
+        }
+
         public Response UpdateChat(int chatId, string title)
         {
             try
