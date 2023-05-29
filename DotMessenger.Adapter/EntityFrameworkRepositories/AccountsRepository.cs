@@ -30,6 +30,11 @@ namespace DotMessenger.Adapter.EntityFrameworkRepositories
             return context.Accounts.FirstOrDefault(account => account.Nickname == nickname && account.Password == password);
         }
 
+        public Account? FindByNickname(string nickname)
+        {
+            return context.Accounts.FirstOrDefault(account => account.Nickname == nickname);
+        }
+
         public void Update(Account account)
         {
             context.Accounts.Update(account);

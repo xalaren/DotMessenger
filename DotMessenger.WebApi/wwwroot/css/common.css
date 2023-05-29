@@ -131,7 +131,8 @@ body {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+textarea {
     height: 50px;
     font-family: 'Golos Text';
     font-size: 20px;
@@ -161,6 +162,17 @@ button {
 button:hover {
     background: #6100FF;
     color: #fff;
+}
+
+a {
+    color: #6100FF;
+    font-family: 'Golos Text';
+    font-weight: 600;
+    font-size: 18px;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 select {

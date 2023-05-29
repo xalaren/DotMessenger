@@ -1,6 +1,8 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using DotMessenger.Core.Interactors;
+using DotMessenger.Shared.DataTransferObjects;
+using DotMessenger.Shared.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -83,6 +85,25 @@ namespace DotMessenger.WebApi.Controllers
                 ClaimsIdentity.DefaultNameClaimType,
                 ClaimsIdentity.DefaultRoleClaimType);
             return claimsIdentity;
+        }
+
+        [Authorize]
+        [HttpGet("getAccount")]
+        public Response<AccountDto> GetAccount()
+        {
+            if(User.Identity == null)
+            {
+                return new Response<AccountDto>()
+                {
+                    Error = true,
+                    ErrorCode = 404,
+                    ErrorMessage = "Could not find authorized user",
+                };
+            }
+
+            string nickname = User.Identity.Name!;
+
+            return accountsInteractor.FindByNickname(nickname);
         }
     }
 }

@@ -36,12 +36,15 @@
             <div class="mainform__content">
                 <div class="content__wrapper">
                     <div class="content__info">
-                        <h1 class="content__title" id="chat-head">Chat 1</h1>
-                        <button class="round-button" id="back-button">
-                            <div class="item">
-                                &lt;
-                            </div>
-                        </button>
+                        <div class="content__info__inline">
+                            <h1 class="content__title" id="chat-head">Chat 1</h1>
+                            <button class="round-button" id="back-button" onclick="redirectTo('chatlist')">
+                                <div class="item">
+                                    &lt;
+                                </div>
+                            </button>
+                        </div>
+                        <a href="#">Участников 2</a>
                     </div>
                     <ul class="content__items">
                         <li class="content__items__message">
@@ -74,7 +77,7 @@
                         </li>
                     </ul>
                     <div class="content__textinput">
-                        <input type="text" id="message-input" placeholder="Сообщение">
+                        <textarea id="message-input" placeholder="Сообщение"></textarea>
                         <button>Отправить</button>
                     </div>
                 </div>

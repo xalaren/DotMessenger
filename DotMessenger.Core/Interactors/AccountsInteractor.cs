@@ -50,7 +50,7 @@ namespace DotMessenger.Core.Interactors
 
                 var response = appRolesInteractor.AssignUserRole(account.Id);
 
-                if(response.Error)
+                if (response.Error)
                 {
                     return response;
                 }
@@ -67,7 +67,7 @@ namespace DotMessenger.Core.Interactors
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message:{exception.Message}" }
                 };
             }
-            catch(ArgumentOutOfRangeException exception)
+            catch (ArgumentOutOfRangeException exception)
             {
                 return new()
                 {
@@ -94,7 +94,7 @@ namespace DotMessenger.Core.Interactors
 
                 var account = repository.FindByAuthData(nickname, password);
 
-                if(account == null)
+                if (account == null)
                 {
                     throw new NotFoundException("Nickname or password was incorrect");
                 }
@@ -107,7 +107,7 @@ namespace DotMessenger.Core.Interactors
                     Value = account.ToDto(),
                 };
             }
-            catch(AppException exception)
+            catch (AppException exception)
             {
                 return new Response<AccountDto>()
                 {
@@ -127,7 +127,7 @@ namespace DotMessenger.Core.Interactors
         {
             try
             {
-                if (accountDto == null || 
+                if (accountDto == null ||
                     CheckForNullStrings(accountDto.Nickname, accountDto.Password,
                         accountDto.Name, accountDto.Lastname))
                 {
@@ -140,7 +140,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     throw new NotFoundException("Account not found");
                 }
-                
+
                 repository.Update(account.Assign(accountDto));
                 unitOfWork.Commit();
 
@@ -182,6 +182,46 @@ namespace DotMessenger.Core.Interactors
             };
         }
 
+        public Response<AccountDto> FindByNickname(string nickname)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(nickname))
+                {
+                    throw new BadRequestException("Nickname was null or empty");
+                }
+
+                var account = repository.FindByNickname(nickname);
+
+                if (account == null)
+                {
+                    throw new NotFoundException("Account not found");
+                }
+
+                return new Response<AccountDto>()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    ErrorMessage = "Success",
+                    Value = account.ToDto(),
+                };
+            }
+            catch (AppException exception)
+            {
+                return new Response<AccountDto>()
+                {
+                    Error = true,
+                    ErrorCode = exception.Code,
+                    ErrorMessage = "Cannot login into account",
+                    DetailedErrorInfo = new string[]
+                    {
+                        $"Type: {exception.Detail}",
+                        $"Message: {exception.Message}"
+                    },
+                };
+            }
+        }
+
         private bool CheckForNullStrings(params string[] values)
         {
             foreach (var value in values)
@@ -191,6 +231,5 @@ namespace DotMessenger.Core.Interactors
 
             return false;
         }
-
     }
 }
