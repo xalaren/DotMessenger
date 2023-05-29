@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/chatliststyles.css">
+    <title>Chats</title>
+</head>
+
+<body>
+
+    <div class="_container">
+        <div class="mainform">
+            <nav class="mainform__nav">
+                <div class="mainform__nav__wrapper">
+                    <h2 class="mainform__nav__title">.Dot Messenger</h2>
+                </div>
+                <div class="mainform__nav__buttons">
+                    <button id="chats-button">
+                        <img src="images/icons/chats.svg" alt="Chats">
+                    </button>
+                    <button id="search-button">
+                        <img src="images/icons/search.svg" alt="Search">
+                    </button>
+                    <button id="profile-button">
+                        <img src="images/icons/profile.svg" alt="Profile">
+                    </button>
+                    <button id="logout-button">
+                        <img src="images/icons/logout.svg" alt="Logout">
+                    </button>
+                </div>
+            </nav>
+            <div class="mainform__content">
+                <div class="content__wrapper">
+                    <div class="content__info">
+                        <h1 class="content__title" id="chat-head">Chat 1</h1>
+                        <button class="round-button" id="back-button">
+                            <div class="item">
+                                &lt;
+                            </div>
+                        </button>
+                    </div>
+                    <ul class="content__items">
+                        <li class="content__items__message">
+                            <div class="message-header">
+                                <p class="item-name">me: </p>
+                                <button class="imaged-button">
+                                    <img src="images/icons/msg_delete.svg" alt="Del">
+                                </button>
+                            </div>
+                            <p class="item-text">Hello</p>
+                        </li>
+
+                        <li class="content__items__message">
+                            <div class="message-header">
+                                <p class="item-name">user1: </p>
+                                <button>
+                                    <img src="images/icons/msg_delete.svg" alt="Del">
+                                </button>
+                            </div>
+                            <p class="item-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+                                aliquam
+                                nisi a laoreet sodales. Duis viverra elit at diam efficitur faucibus. Suspendisse a
+                                laoreet mi. Mauris vel pellentesque sapien. Donec at mollis lacus. Morbi in varius
+                                justo. Cras iaculis justo non euismod vehicula. In hac habitasse platea dictumst. Fusce
+                                condimentum posuere justo nec pulvinar. Proin ac ligula malesuada, condimentum mi vitae,
+                                aliquet felis. Vivamus id erat ut eros blandit varius. Vivamus risus neque, porta id
+                                tortor et, posuere condimentum metus. Donec vitae eleifend est, ac faucibus turpis.
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="content__textinput">
+                        <input type="text" id="message-input" placeholder="Сообщение">
+                        <button>Отправить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <br>
+
+</body>
+
+<script src="js/index.js"></script>
+
+</html>

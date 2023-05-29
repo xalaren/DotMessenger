@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Dot Messenger</title>
+</head>
+
+<body>
+
+    <div class="_container">
+        <div class="mainform" id="loginform">
+            <div class="mainform__leftblock">
+                <h1 class="leftblock__title">Вход</h1>
+                <div class="leftblock__textboxes">
+                    <input type="text" id="nickname-input-login" placeholder="Никнейм" required>
+                    <input type="password" id="password-input-login" placeholder="Пароль" required>
+                </div>
+                <div class="leftblock__buttons">
+                    <button id="login-button" onclick="login()">Войти</button>
+                </div>
+            </div>
+            <div class="mainform__rightblock">
+                <h2 class="welcome__title">Добро пожаловать</h2>
+                <h1 class="name__title">.Dot Messenger</h1>
+                <button id="new-user-button" onclick="displayRegisterForm()">Я - новый пользователь</button>
+            </div>
+        </div>
+
+        <div class="mainform" id="registerform">
+            <div class="mainform__leftblock">
+                <h1 class="leftblock__title">Регистрация</h1>
+                <div class="leftblock__textboxes">
+                    <input type="text" id="nickname-input-register" placeholder="Никнейм" required>
+                    <input type="password" id="password-input-register" placeholder="Пароль" required>
+                    <input type="text" id="email-input-register" placeholder="Email" required>
+                    <input type="text" id="name-input-register" placeholder="Имя" required>
+                    <input type="text" id="lastname-input-register" placeholder="Фамилия" required>
+                    <input type="text" id="phone-input-register" placeholder="+7 (999) 999-99-99">
+                    <div class="birth-date-input">
+                        <select name="birth-day" id="birth-day-select">
+                            <option value="01">01</option>
+                        </select>
+                        <select name="birth-month" id="birth-month-select">
+                            <option value="01">Январь</option>
+                            <option value="02">Февраль</option>
+                            <option value="03">Март</option>
+                            <option value="04">Апрель</option>
+                            <option value="05">Май</option>
+                            <option value="06">Июнь</option>
+                            <option value="07">Июль</option>
+                            <option value="08">Август</option>
+                            <option value="09">Сентябрь</option>
+                            <option value="10">Октябрь</option>
+                            <option value="11">Ноябрь</option>
+                            <option value="12">Декабрь</option>
+                        </select>
+                        <select name="birth-year" id="birth-year-select">
+                            <option value="1970">1970</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="leftblock__buttons">
+                    <button onclick="register()">Регистрация</button>
+                </div>
+            </div>
+            <div class="mainform__rightblock">
+                <h2 class="welcome__title">Добро пожаловать</h2>
+                <h1 class="name__title">.Dot Messenger</h1>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+</body>
+
+<script src="js/index.js"></script>
+
+</html>

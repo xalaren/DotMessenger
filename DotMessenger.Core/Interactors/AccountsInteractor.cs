@@ -10,10 +10,11 @@ namespace DotMessenger.Core.Interactors
 {
     public class AccountsInteractor
     {
+        private readonly AppRolesInteractor appRolesInteractor;
         private readonly IAccountsRepository repository;
         private readonly IUnitOfWork unitOfWork;
 
-        public AccountsInteractor(IAccountsRepository repository, IUnitOfWork unitOfWork)
+        public AccountsInteractor(IAccountsRepository repository, IUnitOfWork unitOfWork, AppRolesInteractor appRolesInteractor)
         {
             if (repository == null)
             {
@@ -27,6 +28,7 @@ namespace DotMessenger.Core.Interactors
 
             this.repository = repository;
             this.unitOfWork = unitOfWork;
+            this.appRolesInteractor = appRolesInteractor;
         }
 
         public Response RegisterNewAccount(AccountDto accountDto)
@@ -38,7 +40,18 @@ namespace DotMessenger.Core.Interactors
                 {
                     throw new BadRequestException("Not all required fields were filled");
                 }
-                repository.Create(accountDto.ToEntity());
+
+                var account = accountDto.ToEntity();
+                repository.Create(account);
+                unitOfWork.Commit();
+
+                var response = appRolesInteractor.AssignUserRole(account.Id);
+
+                if(response.Error)
+                {
+                    return response;
+                }
+
                 unitOfWork.Commit();
             }
             catch (AppException exception)

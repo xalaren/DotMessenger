@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/chatliststyles.css">
+    <title>Chats</title>
+</head>
+
+<body>
+
+    <div class="_container">
+        <div class="mainform">
+            <nav class="mainform__nav">
+                <div class="mainform__nav__wrapper">
+                    <h2 class="mainform__nav__title">.Dot Messenger</h2>
+                </div>
+                <div class="mainform__nav__buttons">
+                    <button id="chats-button">
+                        <img src="images/icons/chats.svg" alt="Chats">
+                    </button>
+                    <button id="search-button">
+                        <img src="images/icons/search.svg" alt="Search">
+                    </button>
+                    <button id="profile-button">
+                        <img src="images/icons/profile.svg" alt="Profile">
+                    </button>
+                    <button id="logout-button">
+                        <img src="images/icons/logout.svg" alt="Logout">
+                    </button>
+                </div>
+            </nav>
+            <div class="mainform__content">
+                <div class="content__wrapper">
+                    <div class="content__info">
+                        <h1 class="content__title">Чаты</h1>
+                        <button class="round-button" id="new-chat-button">+</button>
+                    </div>
+                    <ul class="content__items">
+                        <li class="content__items__item" onclick="redirectTo('chat')">
+                            <p class="item-name">Chat 1</p>
+                            <p class="item-text">user1: hello</p>
+                        </li>
+                        <li class="content__items__item">
+                            <p class="item-name">Chat 2</p>
+                            <p class="item-text">user1: hello</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+</body>
+
+<script src="js/index.js"></script>
+
+</html>

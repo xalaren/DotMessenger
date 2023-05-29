@@ -16,6 +16,8 @@ namespace DotMessenger.WebApi
             
             builder.Services.AddScoped<AccountsInteractor>();
             builder.Services.AddScoped<IAccountsRepository, AccountsRepository>();
+            builder.Services.AddScoped<AppRolesInteractor>();
+            builder.Services.AddScoped<IAppRolesRepository, AppRolesRepository>();
 
             builder.Services.AddScoped<ChatsInteractor>();
             builder.Services.AddScoped<IChatsRepository, ChatsRepository>();
@@ -41,6 +43,9 @@ namespace DotMessenger.WebApi
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseAuthorization();
             
