@@ -37,12 +37,6 @@
 .leftblock__buttons>* {
     width: 360px;
 }
-
-.birth-date-input {
-    display: flex;
-    justify-content: space-between;
-}
-
 /* Left block styles end */
 
 /* Right block styles start */
@@ -86,11 +80,4 @@
 .mainform__rightblock button:hover {
     background: #fff;
     color: #ff9f5a;
-}
-
-/* Right block styles start */
-
-/* Other block styles */
-#birth-month-select {
-    width: 180px;
 }

@@ -14,16 +14,6 @@ namespace DotMessenger.Core.Interactors
 
         public AppRolesInteractor(IAppRolesRepository repository, IUnitOfWork unitOfWork, IAccountsRepository accountsRepository)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException("AppRolesRepository example was null", nameof(repository));
-            }
-
-            if (unitOfWork == null)
-            {
-                throw new ArgumentNullException("Unit of work example was null", nameof(unitOfWork));
-            }
-
             this.appRolesRepository = repository;
             this.unitOfWork = unitOfWork;
             this.accountsRepository = accountsRepository;
@@ -63,7 +53,7 @@ namespace DotMessenger.Core.Interactors
 
                 if (account == null)
                 {
-                    throw new NotFoundException("Account not found");
+                    throw new NotFoundException("Аккаунт не найден");
                 }
 
                 var role = appRolesRepository.FindByName("user");
@@ -108,7 +98,7 @@ namespace DotMessenger.Core.Interactors
             {
                 if (string.IsNullOrWhiteSpace(name))
                 {
-                    throw new BadRequestException("Name was null or empty");
+                    throw new BadRequestException("Имя было пустым");
                 }
                 return new Response<AppRole>()
                 {
@@ -124,7 +114,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot find role",
+                    ErrorMessage = "Не удалось найти роль",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message:{exception.Message}" }
                 };
             }
@@ -138,7 +128,7 @@ namespace DotMessenger.Core.Interactors
 
                 if(role == null)
                 {
-                    throw new NotFoundException("Account not found");
+                    throw new NotFoundException("Не удалось найти аккаунт");
                 }
                 return new Response<AppRole>()
                 {
@@ -154,7 +144,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot find role",
+                    ErrorMessage = "Не удалось найти аккаунт",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message:{exception.Message}" }
                 };
             }

@@ -1,6 +1,7 @@
 using DotMessenger.Core.Interactors;
 using DotMessenger.Shared.DataTransferObjects;
 using DotMessenger.Shared.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotMessenger.WebApi.Controllers
@@ -16,6 +17,7 @@ namespace DotMessenger.WebApi.Controllers
             this.accountsInteractor = accountsInteractor;
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public Response RegisterNewAccount(AccountDto accountDto)
         {

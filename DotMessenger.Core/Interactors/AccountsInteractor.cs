@@ -19,16 +19,6 @@ namespace DotMessenger.Core.Interactors
 
         public AccountsInteractor(IAccountsRepository repository, IUnitOfWork unitOfWork, AppRolesInteractor appRolesInteractor)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException("AccountsRepository example was null", nameof(repository));
-            }
-
-            if (unitOfWork == null)
-            {
-                throw new ArgumentNullException("Unit of work example was null", nameof(unitOfWork));
-            }
-
             this.repository = repository;
             this.unitOfWork = unitOfWork;
             this.appRolesInteractor = appRolesInteractor;
@@ -41,7 +31,7 @@ namespace DotMessenger.Core.Interactors
                 if (CheckForNullStrings(accountDto.Nickname, accountDto.Password, accountDto.Name,
                         accountDto.Lastname))
                 {
-                    throw new BadRequestException("Not all required fields were filled");
+                    throw new BadRequestException("Не все обязательные поля заполнены");
                 }
 
                 var account = accountDto.ToEntity();
@@ -63,7 +53,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot register account",
+                    ErrorMessage = "Невозможно зарегистрировать аккаунт",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message:{exception.Message}" }
                 };
             }
@@ -73,7 +63,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = 400,
-                    ErrorMessage = "Cannot register account",
+                    ErrorMessage = "Невозможно зарегистрировать аккаунт",
                     DetailedErrorInfo = new string[] { $"Type: Bad request", $"Message:{exception.Message}" }
                 };
             }
@@ -82,7 +72,7 @@ namespace DotMessenger.Core.Interactors
             {
                 Error = false,
                 ErrorCode = 200,
-                ErrorMessage = "Success",
+                ErrorMessage = "Аккаунт успешно зарегистрирован",
             };
         }
 
@@ -96,7 +86,7 @@ namespace DotMessenger.Core.Interactors
 
                 if (account == null)
                 {
-                    throw new NotFoundException("Nickname or password was incorrect");
+                    throw new NotFoundException("Никнейм или пароль неверные");
                 }
 
                 return new Response<AccountDto>()
@@ -113,7 +103,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot login into account",
+                    ErrorMessage = "Не удалось войти в аккаунт",
                     DetailedErrorInfo = new string[]
                     {
                         $"Type: {exception.Detail}",
@@ -131,14 +121,14 @@ namespace DotMessenger.Core.Interactors
                     CheckForNullStrings(accountDto.Nickname, accountDto.Password,
                         accountDto.Name, accountDto.Lastname))
                 {
-                    throw new BadRequestException("Account data was null or empty");
+                    throw new BadRequestException("Данные об аккаунте были пустыми");
                 }
 
                 var account = repository.FindById(accountDto.Id);
 
                 if (account == null)
                 {
-                    throw new NotFoundException("Account not found");
+                    throw new NotFoundException("Аккаунт не найден");
                 }
 
                 repository.Update(account.Assign(accountDto));
@@ -147,7 +137,7 @@ namespace DotMessenger.Core.Interactors
                 return new Response()
                 {
                     Error = false,
-                    ErrorMessage = "Success",
+                    ErrorMessage = "Аккаунт успешно обновлен",
                 };
             }
             catch (AppException exception)
@@ -156,7 +146,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot update an account",
+                    ErrorMessage = "Не удалось обновить аккаунт",
                     DetailedErrorInfo = new string[]
                     {
                         $"Type: {exception.Detail}",
@@ -188,14 +178,14 @@ namespace DotMessenger.Core.Interactors
             {
                 if (string.IsNullOrWhiteSpace(nickname))
                 {
-                    throw new BadRequestException("Nickname was null or empty");
+                    throw new BadRequestException("Никнейм был пустым");
                 }
 
                 var account = repository.FindByNickname(nickname);
 
                 if (account == null)
                 {
-                    throw new NotFoundException("Account not found");
+                    throw new NotFoundException("Аккаунт не найден");
                 }
 
                 return new Response<AccountDto>()
@@ -212,7 +202,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot login into account",
+                    ErrorMessage = "Невозможно войти в аккаунт",
                     DetailedErrorInfo = new string[]
                     {
                         $"Type: {exception.Detail}",

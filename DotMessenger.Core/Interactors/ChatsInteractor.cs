@@ -22,16 +22,6 @@ namespace DotMessenger.Core.Interactors
             IAccountsRepository accountsRepository,
             IUnitOfWork unitOfWork)
         {
-            if (chatsRepository == null || chatProfilesRepository == null || accountsRepository == null)
-            {
-                throw new ArgumentNullException("One of the repositories was null");
-            }
-
-            if (unitOfWork == null)
-            {
-                throw new ArgumentNullException("Unit of work example was null", nameof(unitOfWork));
-            }
-
             this.chatsRepository = chatsRepository;
             this.chatProfilesRepository = chatProfilesRepository;
             this.accountsRepository = accountsRepository;
@@ -44,12 +34,12 @@ namespace DotMessenger.Core.Interactors
             {
                 if (string.IsNullOrWhiteSpace(title))
                 {
-                    throw new BadRequestException("Title was null");
+                    throw new BadRequestException("Заголовок был пустым");
                 }
 
                 if (accountId <= 0)
                 {
-                    throw new BadRequestException("Account id was out of range");
+                    throw new BadRequestException("Id аккаунта вышло за границы");
                 }
 
                 var chat = new Chat()
@@ -73,7 +63,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = false,
                     ErrorCode = 200,
-                    ErrorMessage = "Success",
+                    ErrorMessage = "Успешно создан чат",
                 };
             }
             catch (AppException exception)
@@ -82,7 +72,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot create a new chat",
+                    ErrorMessage = "Не удалось создать чат",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" },
                 };
             }
@@ -96,12 +86,12 @@ namespace DotMessenger.Core.Interactors
                 var chat = chatsRepository.FindById(chatId);
                 if(account == null)
                 {
-                    throw new NotFoundException("Account not found");
+                    throw new NotFoundException("Аккаунт не найден");
                 }
 
                 if(chat == null)
                 {
-                    throw new NotFoundException("Chat not found");
+                    throw new NotFoundException("Чат не найден");
                 }
 
 
@@ -127,7 +117,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot invite user",
+                    ErrorMessage = "Невозможно пригласить пользователя",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
                 };
             }
@@ -142,24 +132,24 @@ namespace DotMessenger.Core.Interactors
 
                 if(account == null)
                 {
-                    throw new NotFoundException("User not found");
+                    throw new NotFoundException("Пользователь не найден");
                 }
 
                 if(chat == null)
                 {
-                    throw new NotFoundException("Chat not found");
+                    throw new NotFoundException("Чат не найден");
                 }
 
                 var reqAccount = chat.ChatProfiles.FirstOrDefault(c => c.AccountId == requestAccountId);
 
                 if(reqAccount == null)
                 {
-                    throw new NotFoundException("User is not in chat");
+                    throw new NotFoundException("Пользователь не в чате");
                 }
 
                 if(reqAccount.AccountId != accountId)
                 {
-                    throw new NotAllowedException("Cannot kick other users");
+                    throw new NotAllowedException("Невозможно исключить пользователя");
                 }
 
                 chatProfilesRepository.Remove(reqAccount);
@@ -178,7 +168,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot quit from chat",
+                    ErrorMessage = "Не удалось выйти из чата",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
                 };
             }
@@ -192,7 +182,7 @@ namespace DotMessenger.Core.Interactors
 
                 if(chatProfile == null)
                 {
-                    throw new NotFoundException("Chat profile not found");
+                    throw new NotFoundException("Профиль чата не найден");
                 }
 
                 chatProfilesRepository.Remove(chatProfile);
@@ -211,7 +201,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot kick from chat",
+                    ErrorMessage = "Не удалось исключить пользователя",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
                 };
             }
@@ -225,7 +215,7 @@ namespace DotMessenger.Core.Interactors
 
                 if (chat == null)
                 {
-                    throw new NotFoundException("Chat not found");
+                    throw new NotFoundException("Чат не найден");
                 }
 
                 chat.Title = title;
@@ -237,7 +227,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = false,
                     ErrorCode = 200,
-                    ErrorMessage = "Success"
+                    ErrorMessage = "Чат успешно обновлен"
                 };
             }
             catch(AppException exception)
@@ -246,7 +236,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot update chat",
+                    ErrorMessage = "Не удалось обновить чат",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
                 };
             }
@@ -261,7 +251,7 @@ namespace DotMessenger.Core.Interactors
                 return new Response<ChatDto[]>()
                 {
                     Error = false,
-                    ErrorMessage = "No such chats"
+                    ErrorMessage = "Чаты не найдены"
                 };
             }
 
@@ -274,7 +264,7 @@ namespace DotMessenger.Core.Interactors
                 Error = false,
                 ErrorCode = 200,
                 Value = mapped,
-                ErrorMessage = "Success",
+                ErrorMessage = "Успешно",
             };
         }
 
@@ -287,7 +277,7 @@ namespace DotMessenger.Core.Interactors
                 return new Response<ChatDto[]>()
                 {
                     Error = false,
-                    ErrorMessage = "No such chats"
+                    ErrorMessage = "Чаты не найдены"
                 };
             }
 
@@ -300,7 +290,7 @@ namespace DotMessenger.Core.Interactors
                 Error = false,
                 ErrorCode = 200,
                 Value = mapped,
-                ErrorMessage = "Success",
+                ErrorMessage = "Успешно",
             };
         }
 
@@ -314,7 +304,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = false,
                     ErrorCode = 200,
-                    ErrorMessage = "No chat profiles"
+                    ErrorMessage = "Нет профилей чатов"
                 };
             }
 
@@ -326,7 +316,7 @@ namespace DotMessenger.Core.Interactors
             {
                 Error = false,
                 ErrorCode = 200,
-                ErrorMessage = "Success",
+                ErrorMessage = "Успешно",
                 Value = mapped,
             };
         }
@@ -339,7 +329,7 @@ namespace DotMessenger.Core.Interactors
 
                 if (chat == null)
                 {
-                    throw new NotFoundException("Chat not found");
+                    throw new NotFoundException("Чат не найден");
                 }
 
                 chatsRepository.Delete(chat);
@@ -349,7 +339,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = false,
                     ErrorCode = 200,
-                    ErrorMessage = "Success",
+                    ErrorMessage = "Успешно",
                 };
             }
             catch(AppException exception)
@@ -358,7 +348,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot delete the chat",
+                    ErrorMessage = "Не удалось удалить чат",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
                 };
             }

@@ -37,14 +37,14 @@ namespace DotMessenger.Core.Interactors
             {
                 if (messageDto == null)
                 {
-                    throw new BadRequestException("Empty message");
+                    throw new BadRequestException("Пустое сообщение");
                 }
 
                 var chatProfile = chatProfilesRepository.GetChatProfile(messageDto.SenderId, messageDto.ChatId);
 
                 if (chatProfile == null)
                 {
-                    throw new BadRequestException("Chat or profiles not exists");
+                    throw new BadRequestException("Чат или профиль не существуют");
                 }
 
                 var message = new Message()
@@ -71,7 +71,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot send message",
+                    ErrorMessage = "Не удалось отправить сообщение",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
                 };
             }
@@ -85,7 +85,7 @@ namespace DotMessenger.Core.Interactors
 
                 if(foundMessage == null)
                 {
-                    throw new NotFoundException("Message not found");
+                    throw new NotFoundException("Сообшение не найдено");
                 }
 
                 messagesRepository.Delete(foundMessage);
@@ -95,7 +95,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = false,
                     ErrorCode = 200,
-                    ErrorMessage = "Success",
+                    ErrorMessage = "Успешно",
                 };
             }
             catch(AppException exception)
@@ -104,7 +104,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot remove message",
+                    ErrorMessage = "Не удалось удалить сообщение",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
                 };
             }
@@ -119,17 +119,17 @@ namespace DotMessenger.Core.Interactors
 
                 if (foundMessage == null)
                 {
-                    throw new NotFoundException("Message not found");
+                    throw new NotFoundException("Сообщение не найдено");
                 }
 
                 if (sender == null)
                 {
-                    throw new NotFoundException("User not found");
+                    throw new NotFoundException("Пользователь не найден");
                 }
 
                 if(foundMessage.Sender.AccountId != requestSenderId)
                 {
-                    throw new NotAllowedException("User is not sender");
+                    throw new NotAllowedException("Пользователь не был отправителем");
                 }
                 messagesRepository.Delete(foundMessage);
                 unitOfWork.Commit();
@@ -138,7 +138,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = false,
                     ErrorCode = 200,
-                    ErrorMessage = "Success",
+                    ErrorMessage = "Успешно",
                 };
             }
             catch (AppException exception)
@@ -147,7 +147,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = true,
                     ErrorCode = exception.Code,
-                    ErrorMessage = "Cannot remove message",
+                    ErrorMessage = "Не удалось удалить сообщение",
                     DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message: {exception.Message}" }
                 };
             }
@@ -163,7 +163,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = false,
                     ErrorCode = 202,
-                    ErrorMessage = "No messages",
+                    ErrorMessage = "Нет сообщений",
                 };
             } 
 
@@ -175,7 +175,7 @@ namespace DotMessenger.Core.Interactors
             {
                 Error = false,
                 ErrorCode = 200,
-                ErrorMessage = "Success",
+                ErrorMessage = "Успешно",
                 Value = mapped,
             };
         }
@@ -186,7 +186,7 @@ namespace DotMessenger.Core.Interactors
             {
                 Error = false,
                 ErrorCode = 200,
-                ErrorMessage = "Success",
+                ErrorMessage = "Успешно",
                 Value = messagesRepository.GetAllMessages(),
             };
         }
@@ -201,7 +201,7 @@ namespace DotMessenger.Core.Interactors
                 {
                     Error = false,
                     ErrorCode = 200,
-                    ErrorMessage = "No messages",
+                    ErrorMessage = "Нет сообщений",
                 };
             }
 
@@ -213,7 +213,7 @@ namespace DotMessenger.Core.Interactors
             {
                 Error = false,
                 ErrorCode = 200,
-                ErrorMessage = "Success",
+                ErrorMessage = "Успешно",
                 Value = mapped,
             };
         }
