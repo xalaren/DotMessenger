@@ -1,6 +1,9 @@
 using System;
 using System.Data.Common;
+using System.Security.Cryptography;
+using DotMessenger.Core.Encryption;
 using DotMessenger.Core.Interactors.Mappers;
+using DotMessenger.Core.Model.Entities;
 using DotMessenger.Core.Repositories;
 using DotMessenger.Shared.DataTransferObjects;
 using DotMessenger.Shared.Exceptions;
@@ -81,6 +84,43 @@ namespace DotMessenger.Core.Interactors
                 ErrorCode = 200,
                 ErrorMessage = "Success",
             };
+        }
+
+        public Response<AccountDto> Login(string nickname, string password)
+        {
+            try
+            {
+                password = SHA256Encryption.ComputeSha256Hash(password);
+
+                var account = repository.FindByAuthData(nickname, password);
+
+                if(account == null)
+                {
+                    throw new NotFoundException("Nickname or password was incorrect");
+                }
+
+                return new Response<AccountDto>()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    ErrorMessage = "Success",
+                    Value = account.ToDto(),
+                };
+            }
+            catch(AppException exception)
+            {
+                return new Response<AccountDto>()
+                {
+                    Error = true,
+                    ErrorCode = exception.Code,
+                    ErrorMessage = "Cannot login into account",
+                    DetailedErrorInfo = new string[]
+                    {
+                        $"Type: {exception.Detail}",
+                        $"Message: {exception.Message}"
+                    },
+                };
+            }
         }
 
         public Response UpdateAccount(AccountDto accountDto)

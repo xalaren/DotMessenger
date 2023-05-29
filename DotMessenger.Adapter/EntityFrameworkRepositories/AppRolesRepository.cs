@@ -17,6 +17,22 @@ namespace DotMessenger.Adapter.EntityFrameworkRepositories
             context.AppRoles.Add(appRole);
         }
 
+        public AppRole? FindByAccount(int accountId)
+        {
+            var account = context.Accounts.Find(accountId);
+
+            if(account == null)
+            {
+                return null;
+            }
+
+            context.Entry(account)
+                .Reference(account => account.AppRole)
+                .Load();
+
+            return account.AppRole;
+        }
+
         public AppRole? FindById(int appRoleId)
         {
             return context.AppRoles.Find(appRoleId);

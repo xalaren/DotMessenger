@@ -1,4 +1,7 @@
 using System.Security.AccessControl;
+using System.Security.Cryptography;
+using System.Text;
+using DotMessenger.Core.Encryption;
 using DotMessenger.Core.Mappers;
 using DotMessenger.Core.Model.Entities;
 using DotMessenger.Shared.DataTransferObjects;
@@ -43,7 +46,7 @@ public static class AccountMapper
             Nickname = accountDto.Nickname,
             Name = accountDto.Name,
             Lastname = accountDto.Lastname,
-            Password = accountDto.Password,
+            Password = SHA256Encryption.ComputeSha256Hash(accountDto.Password),
             Email = accountDto.Email,
             Phone = accountDto.Phone,
         };

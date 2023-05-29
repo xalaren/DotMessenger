@@ -1,3 +1,4 @@
+using System.Xml.Linq;
 using DotMessenger.Core.Model.Entities;
 using DotMessenger.Core.Repositories;
 using DotMessenger.Shared.Exceptions;
@@ -67,7 +68,7 @@ namespace DotMessenger.Core.Interactors
 
                 var role = appRolesRepository.FindByName("user");
 
-                account.GlobalRole = role;
+                account.AppRole = role;
 
                 accountsRepository.Update(account);
 
@@ -97,7 +98,8 @@ namespace DotMessenger.Core.Interactors
                 Error = false,
                 ErrorCode = 200,
                 ErrorMessage = "Success",
-                Value = appRolesRepository.FindById(roleId);
+                Value = appRolesRepository.FindById(roleId)
+            };
         }
 
         public Response<AppRole> FindByName(string name)
@@ -114,6 +116,36 @@ namespace DotMessenger.Core.Interactors
                     ErrorCode = 200,
                     ErrorMessage = "Success",
                     Value = appRolesRepository.FindByName(name)
+                };
+            }
+            catch (AppException exception)
+            {
+                return new()
+                {
+                    Error = true,
+                    ErrorCode = exception.Code,
+                    ErrorMessage = "Cannot find role",
+                    DetailedErrorInfo = new string[] { $"Type: {exception.Detail}", $"Message:{exception.Message}" }
+                };
+            }
+        }
+
+        public Response<AppRole> FindByAccount(int accountId)
+        {
+            try
+            {
+                var role = appRolesRepository.FindByAccount(accountId);
+
+                if(role == null)
+                {
+                    throw new NotFoundException("Account not found");
+                }
+                return new Response<AppRole>()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    ErrorMessage = "Success",
+                    Value = role
                 };
             }
             catch (AppException exception)

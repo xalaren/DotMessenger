@@ -6,6 +6,7 @@ namespace DotMessenger.Core.Repositories
     {
         void Create(Account account);
         Account? FindById(int accountId);
+        Account? FindByAuthData(string nickname, string password);
         void Update(Account account);
         void Remove(int accountId);
         Account[] GetAllAccounts();

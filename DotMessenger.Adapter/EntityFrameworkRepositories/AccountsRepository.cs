@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Security.Principal;
 using DotMessenger.Adapter.EntityFrameworkContexts;
 using DotMessenger.Core.Model.Entities;
@@ -22,6 +23,11 @@ namespace DotMessenger.Adapter.EntityFrameworkRepositories
         public Account? FindById(int accountId)
         {
             return context.Accounts.Find(accountId);
+        }
+
+        public Account? FindByAuthData(string nickname, string password)
+        {
+            return context.Accounts.FirstOrDefault(account => account.Nickname == nickname && account.Password == password);
         }
 
         public void Update(Account account)
