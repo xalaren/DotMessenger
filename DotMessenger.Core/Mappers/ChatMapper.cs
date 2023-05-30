@@ -16,7 +16,7 @@ public static class ChatMapper
         {
             Id = chat.Id,
             Title = chat.Title,
-            CreatedAt = chat.CreatedAt
+            CreatedAt = chat.CreatedAt.ToShortDateString(),
         };
     }
 
@@ -31,7 +31,7 @@ public static class ChatMapper
         {
             Id = chatDto.Id,
             Title = chatDto.Title,
-            CreatedAt = chatDto.CreatedAt
+            CreatedAt = DateTime.Parse(chatDto.CreatedAt),
         };
     }
 }

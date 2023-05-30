@@ -17,3 +17,9 @@ let SharedAccount = function(id, nickname, name, lastname, email, phone) {
     this.phone = phone;
 }
 
+let Chat = function(id, title, createdAt) {
+    this.id = id;
+    this.title = title;
+    this.createdAt = createdAt;
+}
+
