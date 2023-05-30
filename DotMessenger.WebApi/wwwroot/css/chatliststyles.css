@@ -74,6 +74,7 @@
 .content__items {
     overflow-y: auto;
     max-height: 800px;
+    padding-bottom: 40px;
 }
 
 .round-button {
@@ -180,4 +181,8 @@
 
 .message-header button:hover {
     background-color: #dbdbdb;
+}
+
+#chat-create-modal {
+    display: none;
 }

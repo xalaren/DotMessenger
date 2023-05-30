@@ -140,7 +140,7 @@ textarea {
     color: #3f3f3f;
     border: none;
     outline: none;
-    padding-left: 18px;
+    padding: 0 18px;
     border-radius: 6px;
 }
 
@@ -243,6 +243,10 @@ select>option {
     font-size: 20px;
     line-height: 1.5;
     word-wrap: break-word;
+}
+
+.modal__content>* {
+    margin-bottom: 40px;
 }
 
 .modal__navigation {
