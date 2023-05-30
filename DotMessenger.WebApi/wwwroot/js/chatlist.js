@@ -99,6 +99,11 @@ function openModalForCreateChat() {
     modal.style.display = 'block';
 }
 
+function closeWithRedirect() {
+    closeModal();
+    redirectTo('index');
+}
+
 function createChat() {
     hideModal();
     let title = document.getElementById('chat-create-text').value;

@@ -59,6 +59,10 @@
 
 .content__wrapper {
     padding: 0 80px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .content__info {
@@ -149,7 +153,10 @@
     padding: 0 50px;
     line-height: 1.5;
 }
-
+.content__footer {
+    position: absolute;
+    bottom: 0px;
+}
 .content__textinput {
     display: flex;
 }

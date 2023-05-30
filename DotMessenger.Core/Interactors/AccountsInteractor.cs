@@ -212,6 +212,41 @@ namespace DotMessenger.Core.Interactors
             }
         }
 
+        public Response<SharedAccountDto> FindById(int accountId)
+        {
+            try
+            {
+                var account = repository.FindById(accountId);
+
+                if (account == null)
+                {
+                    throw new NotFoundException("Аккаунт не найден");
+                }
+
+                return new Response<SharedAccountDto>()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    ErrorMessage = "Success",
+                    Value = account.ToSharedDto(),
+                };
+            }
+            catch (AppException exception)
+            {
+                return new Response<SharedAccountDto>()
+                {
+                    Error = true,
+                    ErrorCode = exception.Code,
+                    ErrorMessage = "Невозможно войти в аккаунт",
+                    DetailedErrorInfo = new string[]
+                    {
+                        $"Type: {exception.Detail}",
+                        $"Message: {exception.Message}"
+                    },
+                };
+            }
+        }
+
         private bool CheckForNullStrings(params string[] values)
         {
             foreach (var value in values)
