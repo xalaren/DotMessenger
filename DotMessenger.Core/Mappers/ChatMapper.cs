@@ -9,7 +9,7 @@ public static class ChatMapper
     {
         if(chat == null)
         {
-            throw new ArgumentNullException();
+            return null;
         }
 
         return new ChatDto()

@@ -7,6 +7,10 @@
     min-height: 1000px;
 }
 
+.mainform__content {
+    margin-bottom: 40px;
+}
+
 /* Mainform navbar styles start */
 .mainform__nav {
     width: 100%;

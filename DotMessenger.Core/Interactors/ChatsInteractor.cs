@@ -270,28 +270,40 @@ namespace DotMessenger.Core.Interactors
 
         public Response<ChatDto[]> GetAllUserChats(int userId)
         {
-            var result = chatsRepository.GetAllUserChats(userId);
+            try
+            {
+                var result = chatsRepository.GetAllUserChats(userId);
 
-            if (result == null)
+                if (result == null)
+                {
+                    return new Response<ChatDto[]>()
+                    {
+                        Error = false,
+                        ErrorMessage = "Чаты не найдены"
+                    };
+                }
+
+                var mapped = result
+                    .Select(chat => chat.ToDto())
+                    .ToArray();
+
+                return new()
+                {
+                    Error = false,
+                    ErrorCode = 200,
+                    Value = mapped,
+                    ErrorMessage = "Успешно",
+                };
+            }
+            catch(Exception exception)
             {
                 return new Response<ChatDto[]>()
                 {
-                    Error = false,
-                    ErrorMessage = "Чаты не найдены"
+                    Error = true,
+                    ErrorCode = 401,
+                    ErrorMessage = exception.Message,
                 };
             }
-
-            var mapped = result
-                .Select(chat => chat.ToDto())
-                .ToArray();
-
-            return new()
-            {
-                Error = false,
-                ErrorCode = 200,
-                Value = mapped,
-                ErrorMessage = "Успешно",
-            };
         }
 
         public Response<ChatProfileDto[]> GetUsersFromChat(int chatId)

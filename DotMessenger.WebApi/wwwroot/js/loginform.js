@@ -1,9 +1,9 @@
 "use strict";
 
-const loginUri = 'api/AuthController';
-const accountsControllerUri = 'api/AccountsController';
-
+const authControllerUrl = 'api/AuthController';
+const accountsControllerUrl = 'api/AccountsController';
 let tokenKey = "accessToken";
+let accountKey = 'accountKey';
 
 init();
 function init() {
@@ -29,39 +29,27 @@ function login() {
     let nickname = document.getElementById('nickname-input-login').value;
     let password = document.getElementById('password-input-login').value;
 
-    fetch(loginUri + `?username=${nickname}&password=${password}`, {
+    $.ajax({
+        url: authControllerUrl + `?username=${nickname}&password=${password}`,
         method: 'POST',
+        success: function (response) {
+                sessionStorage.clear();
+                sessionStorage.setItem(tokenKey, response);
+                handleLoginResult();
+            },
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
+        data: JSON.stringify({
             nickname: nickname,
             password: password,
-        })
-    })
-        .then(response => {
-            if(response.ok) {
-                return response.json();
-            }
-            else {
-                return response.json().then(error => {
-                    throw error;
-                });
-            }
-        })
-        .then(data => {
-            sessionStorage.clear();
-            sessionStorage.setItem(tokenKey, data);
-
-            redirectTo('chatlist');
-        })
-        .catch(error => showModalResult('Ошибка', 'Введены неверные данные'));
-
-
+        }),
+        error: function(xhr, status, error) {
+            showModalResult('Ошибка', 'Введены неверные данные');
+        }
+    });
 }
-
-
 function register() {
     let nickname = document.getElementById('nickname-input-register').value;
     let password = document.getElementById('password-input-register').value;
@@ -72,21 +60,57 @@ function register() {
 
     let account = new Account(0, nickname, password, name, lastname, email, phone);
 
-    fetch(accountsControllerUri + '/register',
-    {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(account)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        showModalResult('Регистрация', data.errorMessage);
-        if (!data.error) {
+    $.ajax({
+        url: accountsControllerUrl + '/register',
+        method: 'POST',
+        success: function (response) {
+            if(response.error) {
+                showModalResult('Ошибка', response.errorMessage);
+                return;
+            }
+            showModalResult('Регистрация', response.errorMessage);
             displayLoginForm();
+        },
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(account),
+        error: function(xhr, status, error) {
+            showModalResult('Ошибка', 'Введены неверные данные');
+        }
+    });
+}
+
+function handleLoginResult() {
+    let token = sessionStorage.getItem(tokenKey);
+    $.ajax({
+        url: authControllerUrl + '/getAccount',
+        method: 'GET',
+        success: function (response) {
+            if(response.error) {
+                showModalResult(`Ошибка ${response.errorCode}`, response.errorMessage, true);
+                return;
+            }
+            let result = response.value;
+            let account = new Account(
+                result.id,
+                result.nickname,
+                result.password,
+                result.name,
+                result.lastname,
+                result.email,
+                result.phone);
+
+            sessionStorage.setItem(accountKey, JSON.stringify(account));
+            redirectTo('chatlist');
+        },
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + token,
+        },
+        error: function(xhr, status, error) {
+            showModalResult('Ошибка', 'Не удалось получить данные', true);
         }
     });
 }
