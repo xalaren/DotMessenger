@@ -172,7 +172,7 @@ namespace DotMessenger.Core.Interactors
             };
         }
 
-        public Response<AccountDto> FindByNickname(string nickname)
+        public Response<SharedAccountDto> FindByNickname(string nickname)
         {
             try
             {
@@ -188,17 +188,17 @@ namespace DotMessenger.Core.Interactors
                     throw new NotFoundException("Аккаунт не найден");
                 }
 
-                return new Response<AccountDto>()
+                return new Response<SharedAccountDto>()
                 {
                     Error = false,
                     ErrorCode = 200,
                     ErrorMessage = "Success",
-                    Value = account.ToDto(),
+                    Value = account.ToSharedDto(),
                 };
             }
             catch (AppException exception)
             {
-                return new Response<AccountDto>()
+                return new Response<SharedAccountDto>()
                 {
                     Error = true,
                     ErrorCode = exception.Code,

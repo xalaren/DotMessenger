@@ -24,12 +24,14 @@ namespace DotMessenger.WebApi.Controllers
             return accountsInteractor.RegisterNewAccount(accountDto);
         }
 
+        [Authorize]
         [HttpPost("update")]
         public Response UpdateAccount(AccountDto accountDto)
         {
             return accountsInteractor.UpdateAccount(accountDto);
         }
 
+        [Authorize]
         [HttpGet("get-all")]
         public Response<AccountDto[]> GetAllAccounts()
         {

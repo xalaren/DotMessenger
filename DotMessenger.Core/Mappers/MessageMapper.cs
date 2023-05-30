@@ -18,6 +18,7 @@ namespace DotMessenger.Core.Mappers
                 Id = message.Id,
                 ChatId = message.ChatId,
                 SenderId = message.Sender.AccountId,
+                SenderName = message.Sender.Account.Name,
                 Text = message.Text,
                 SendDate = message.SendDate,
             };

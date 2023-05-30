@@ -54,6 +54,27 @@ public static class AccountMapper
         return account;
     }
 
+    public static SharedAccountDto ToSharedDto(this Account account)
+    {
+        if (account == null)
+        {
+            throw new ArgumentNullException();
+        }
+
+        var sharedAccountDto = new SharedAccountDto()
+        {
+            Id = account.Id,
+            Nickname = account.Nickname,
+            Name = account.Name,
+            Lastname = account.Lastname,
+            Email = account.Email,
+            Phone = account.Phone,
+        };
+
+        return sharedAccountDto;
+
+    }
+
     public static Account Assign(this Account account, AccountDto accountDto)
     {
         account.Nickname = accountDto.Nickname ?? account.Nickname;

@@ -89,11 +89,11 @@ namespace DotMessenger.WebApi.Controllers
 
         [Authorize]
         [HttpGet("getAccount")]
-        public Response<AccountDto> GetAccount()
+        public Response<SharedAccountDto> GetAccount()
         {
             if(User.Identity == null)
             {
-                return new Response<AccountDto>()
+                return new Response<SharedAccountDto>()
                 {
                     Error = true,
                     ErrorCode = 404,
