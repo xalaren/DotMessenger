@@ -38,7 +38,7 @@ namespace DotMessenger.WebApi.Controllers
            return accountsInteractor.GetAllAccounts();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("get-by-id")]
         public Response<SharedAccountDto> GetAccountById(int accountId)
         {
